@@ -17,11 +17,14 @@ class OpenWeatherMapService {
 extension OpenWeatherMapService: WeatherServiceDataSource {
     
     internal func fiveDayForecast(atLocation location: Location, completion: (MultiDayForecast?, WeatherServiceError?) -> Void) {
-        
+
     }
     
     internal func currentForecast(atLocation location: Location, completion: (Forecast?, WeatherServiceError?) -> Void) {
-        
+        let forecast = Forecast()
+        forecast.date = Date()
+  
+        completion(forecast, nil)
     }
     
 }
