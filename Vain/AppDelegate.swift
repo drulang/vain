@@ -65,7 +65,7 @@ extension AppDelegate {
     func initializeWindow() {
         log.info("Initializing application window")
 
-        let vc = ViewController()
+        let vc = WeatherDashboardViewController()
         vc.view.backgroundColor = UIColor.green
 
         window = UIWindow(frame: UIScreen.main.bounds)

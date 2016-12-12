@@ -38,3 +38,15 @@ class CommandCenter {
     }
 }
 
+
+// MARK: WeatherDataSource
+extension CommandCenter: WeatherServiceDataSource {
+
+    internal func currentForecast(atLocation location: Location, completion: (Forecast?, WeatherServiceError?) -> Void) {
+        
+    }
+    
+    internal func fiveDayForecast(atLocation location: Location, completion: (MultiDayForecast?, WeatherServiceError?) -> Void) {
+        
+    }
+}
