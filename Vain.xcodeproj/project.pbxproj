@@ -176,6 +176,7 @@
 					717C58D21DFD9C8D003F2835 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = M3PW445462;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};

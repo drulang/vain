@@ -7,24 +7,23 @@
 //
 
 import UIKit
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
+
+let appDel = UIApplication.shared.delegate as! AppDelegate
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let vc = ViewController()
-        vc.view.backgroundColor = UIColor.green
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = vc
-        window?.makeKeyAndVisible()
-        
-        
+
+        initializeLogging() // This should usually be the first thing initialized
+        initializeWindow()
+
         return true
     }
 
@@ -51,5 +50,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+
+//MARK: Helpers
+extension AppDelegate {
+
+    func initializeLogging() {
+        print("Initializing logging")
+        log.addDestination(ConsoleDestination())
+        log.info("Logging initialized")
+    }
+    
+    func initializeWindow() {
+        log.info("Initializing application window")
+
+        let vc = ViewController()
+        vc.view.backgroundColor = UIColor.green
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+    }
 }
 
