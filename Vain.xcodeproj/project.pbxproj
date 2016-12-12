@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C6A3C754F816ACC09EFFD61 /* Pods_Vain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F465A06DE8F865801796 /* Pods_Vain.framework */; };
 		717C58D71DFD9C8D003F2835 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58D61DFD9C8D003F2835 /* AppDelegate.swift */; };
 		717C58D91DFD9C8D003F2835 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58D81DFD9C8D003F2835 /* ViewController.swift */; };
 		717C58DE1DFD9C8D003F2835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 717C58DD1DFD9C8D003F2835 /* Assets.xcassets */; };
@@ -30,6 +31,9 @@
 		717C58F41DFEF035003F2835 /* OpenWeatherMapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapService.swift; sourceTree = "<group>"; };
 		717C58F61DFEF35C003F2835 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		717C58F81DFEF3DD003F2835 /* LocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		8013F465A06DE8F865801796 /* Pods_Vain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.release.xcconfig"; sourceTree = "<group>"; };
+		E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C6A3C754F816ACC09EFFD61 /* Pods_Vain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0D26AE9951D09BCAF017A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8013F465A06DE8F865801796 /* Pods_Vain.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E2D070E46EE2B1782EAC543 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */,
+				CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		717C58CA1DFD9C8C003F2835 = {
 			isa = PBXGroup;
 			children = (
 				717C58D51DFD9C8D003F2835 /* Vain */,
 				717C58D41DFD9C8D003F2835 /* Products */,
+				0E2D070E46EE2B1782EAC543 /* Pods */,
+				0C0D26AE9951D09BCAF017A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,9 +147,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 717C58E51DFD9C8D003F2835 /* Build configuration list for PBXNativeTarget "Vain" */;
 			buildPhases = (
+				6850D0C0082C994234B623D2 /* [CP] Check Pods Manifest.lock */,
 				717C58CF1DFD9C8D003F2835 /* Sources */,
 				717C58D01DFD9C8D003F2835 /* Frameworks */,
 				717C58D11DFD9C8D003F2835 /* Resources */,
+				BF0E690D2F9E71EBA00C4266 /* [CP] Embed Pods Frameworks */,
+				98B5F5E4F95871E726DB0553 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,6 +209,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6850D0C0082C994234B623D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		98B5F5E4F95871E726DB0553 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vain/Pods-Vain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF0E690D2F9E71EBA00C4266 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vain/Pods-Vain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		717C58CF1DFD9C8D003F2835 /* Sources */ = {
@@ -305,6 +380,7 @@
 		};
 		717C58E61DFD9C8D003F2835 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M3PW445462;
@@ -318,6 +394,7 @@
 		};
 		717C58E71DFD9C8D003F2835 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M3PW445462;
