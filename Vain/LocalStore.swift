@@ -13,13 +13,15 @@ class LocalStore {
 }
 
 
+//TODO: Implement
+
 //MARK: WeatherSource
-extension LocalStore: WeatherServiceDataSource {
-    
-}
+//extension LocalStore: WeatherServiceDataSource {
+//    
+//}
 
 
 //MARK: CurrentLocationDataSource
-extension LocalStore: CurrentLocationDataSource {
-    
-}
+//extension LocalStore: CurrentLocationDataSource {
+//    
+//}

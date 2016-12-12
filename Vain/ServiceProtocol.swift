@@ -8,12 +8,23 @@
 
 import Foundation
 
+enum WeatherServiceError : Error {
+    
+}
+
+enum LocationServiceError: Error {
+    
+}
+
 
 /**
  Provides weather information such as current weather, 5 day forecast, etc.
  */
 protocol WeatherServiceDataSource {
     
+    func currentForecast(atLocation location:Location, completion:(_:Forecast?, _:WeatherServiceError?)->Void);
+    func fiveDayForecast(atLocation location:Location, completion:(_:MultiDayForecast?, _:WeatherServiceError?)->Void);
+
 }
 
 
@@ -22,6 +33,8 @@ protocol WeatherServiceDataSource {
  */
 protocol CurrentLocationDataSource {
     
+    func currentLocation(completion:(_:Location?, _:LocationServiceError?)->Void);
+
 }
 
 
