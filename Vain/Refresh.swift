@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Refresh {
-    func refresh();
+    func refresh()
 }
