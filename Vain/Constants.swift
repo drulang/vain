@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct Constants {
+    struct Identifiers {
+        static let Cell = "com.vain.cell" //TODO: Add domanify func
+    }
+}
+
 struct Appearance {
     
     struct Font {
