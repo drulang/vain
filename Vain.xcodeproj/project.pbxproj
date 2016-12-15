@@ -29,6 +29,7 @@
 		719A7FF01DFF73B100CE7F34 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FEF1DFF73B100CE7F34 /* Refresh.swift */; };
 		719A7FF41DFF782100CE7F34 /* ForecastQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */; };
 		719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */; };
+		71B9492B1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		719A7FEF1DFF73B100CE7F34 /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
 		719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastQuickView.swift; sourceTree = "<group>"; };
 		719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickView.swift; sourceTree = "<group>"; };
+		71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickCollectionViewCell.swift; sourceTree = "<group>"; };
 		8013F465A06DE8F865801796 /* Pods_Vain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.release.xcconfig"; sourceTree = "<group>"; };
 		E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,10 +204,19 @@
 		719A7FF21DFF77B700CE7F34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				71B949281E00B98A0093C437 /* Cell */,
 				719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */,
 				719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		71B949281E00B98A0093C437 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +359,7 @@
 				717C59051DFF2E52003F2835 /* CurrentForecastViewController.swift in Sources */,
 				717C58F71DFEF35C003F2835 /* LocationService.swift in Sources */,
 				717C58F51DFEF035003F2835 /* OpenWeatherMapService.swift in Sources */,
+				71B9492B1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift in Sources */,
 				719A7FE91DFF713A00CE7F34 /* Constants.swift in Sources */,
 				717C59031DFF2E3F003F2835 /* WeatherDashboardViewController.swift in Sources */,
 				717C59011DFF0915003F2835 /* WeatherCondition.swift in Sources */,
