@@ -9,13 +9,16 @@
 import Foundation
 
 enum WeatherServiceError : Error {
-    
+    case Unavailable
 }
 
 enum LocationServiceError: Error {
     
 }
 
+enum WeatherForecastType {
+    case FiveDay
+}
 
 /**
  Provides weather information such as current weather, 5 day forecast, etc.

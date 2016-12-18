@@ -16,5 +16,5 @@ class Forecast : Model {
 }
 
 class MultiDayForecast : Model {
-    var forecast:[Forecast] = [] //TODO: Evaluate if this should be constant
+    var days:[Forecast] = [] //TODO: Evaluate if this should be constant
 }

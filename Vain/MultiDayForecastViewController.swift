@@ -21,6 +21,7 @@ class MultiDayForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.backgroundColor = UIColor.clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.register(ForecastDayQuickCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.Cell)
@@ -28,6 +29,8 @@ class MultiDayForecastViewController: UIViewController {
         view.addSubview(collectionView)
         
         view.setNeedsUpdateConstraints()
+        
+        refresh()
     }
     
     override func updateViewConstraints() {
@@ -45,19 +48,26 @@ class MultiDayForecastViewController: UIViewController {
 //MARK: Refresh
 extension MultiDayForecastViewController: Refresh {
     func refresh() {
-        collectionView.reloadData()
+        
+        CommandCenter.shared.fiveDayForecast(atLocation: Location(), completion: {(forecast:MultiDayForecast?, error:WeatherServiceError?) in
+                self.forecast = forecast
+                self.collectionView.reloadData()
+        })
     }
 }
 
 
 //MARK: UICollectionViewDataSource
 extension MultiDayForecastViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecast?.forecast.count ?? 0
+        return 5
+        return forecast?.days.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.Cell, for: indexPath)
+        cell.box()
         
         return cell
     }
