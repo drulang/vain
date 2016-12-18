@@ -33,8 +33,10 @@ class ForecastDayQuickView : UIView {
     override func updateConstraints() {
         if  !constraintsAdded {
             constraintsAdded = true
-            
-            forecastQuickView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.bottom)
+
+            forecastQuickView.autoPinEdge(toSuperviewEdge: ALEdge.top)
+            forecastQuickView.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
+            forecastQuickView.autoSetDimensions(to: forecastQuickView.intrinsicContentSize)
             
             textLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: forecastQuickView)
             textLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.top)

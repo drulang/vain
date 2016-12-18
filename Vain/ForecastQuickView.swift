@@ -22,10 +22,16 @@ class ForecastQuickView : UIView {
         addSubview(textLabel)
         
         iconImageView.image = #imageLiteral(resourceName: "IconWeatherSun")
-        iconImageView.contentMode = UIViewContentMode.scaleAspectFit
-        textLabel.text = "32/80"
+        iconImageView.contentMode = UIViewContentMode.scaleAspectFill
         
-        boxTheHellOutOfEverything()
+        textLabel.textAlignment = NSTextAlignment.center
+        textLabel.text = "32/80"
+        textLabel.font = Appearance.Font.IconSubtitleFont
+        
+        
+        layer.cornerRadius = 30
+        backgroundColor = UIColor.orange
+        
         setNeedsUpdateConstraints()
     }
     
@@ -37,10 +43,15 @@ class ForecastQuickView : UIView {
         if !constraintsAdded {
             constraintsAdded = true
             
-            iconImageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.bottom)
-            iconImageView.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: textLabel)
+            let iconDefaultPadding = CGFloat(5)
+            let iconTopPadding = CGFloat(3)
+            let iconInsets = UIEdgeInsets(top: iconTopPadding, left: iconDefaultPadding, bottom: iconDefaultPadding, right: iconDefaultPadding)
+            iconImageView.autoPinEdgesToSuperviewEdges(with: iconInsets, excludingEdge: ALEdge.bottom)
+            iconImageView.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: textLabel, withOffset: 0)
             
-            textLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.top)
+            
+            let textLabelInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+            textLabel.autoPinEdgesToSuperviewEdges(with: textLabelInsets, excludingEdge: ALEdge.top)
             textLabel.autoSetDimension(ALDimension.height, toSize: textLabel.intrinsicContentSize.height)
         }
 
@@ -48,6 +59,7 @@ class ForecastQuickView : UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: super.intrinsicContentSize.width, height: 50)
+        let size = 63
+        return CGSize(width: size, height: size)
     }
 }
