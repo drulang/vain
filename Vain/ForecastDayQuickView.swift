@@ -9,6 +9,11 @@
 import UIKit
 import PureLayout
 
+private struct ForecastDayQuickViewConfig {
+    struct Layout {
+        static let TextLabelTopPadding = CGFloat(5)
+    }
+}
 
 class ForecastDayQuickView : UIView {
     let forecastQuickView = ForecastQuickView(forAutoLayout: ())
@@ -17,11 +22,13 @@ class ForecastDayQuickView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         addSubview(forecastQuickView)
         addSubview(textLabel)
         
-        textLabel.text = "Mon"
+        textLabel.text = "M"
+        textLabel.textAlignment = NSTextAlignment.center
+        textLabel.font = Appearance.Font.SubtitleFont
         
         setNeedsUpdateConstraints()
     }
@@ -38,8 +45,8 @@ class ForecastDayQuickView : UIView {
             forecastQuickView.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
             forecastQuickView.autoSetDimensions(to: forecastQuickView.intrinsicContentSize)
             
-            textLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: forecastQuickView)
-            textLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.top)
+            textLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: forecastQuickView, withOffset:ForecastDayQuickViewConfig.Layout.TextLabelTopPadding)
+            textLabel.autoAlignAxis(ALAxis.vertical, toSameAxisOf: forecastQuickView)
             textLabel.autoSetDimension(ALDimension.height, toSize: textLabel.intrinsicContentSize.height)
         }
         
@@ -47,7 +54,7 @@ class ForecastDayQuickView : UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        let height = forecastQuickView.intrinsicContentSize.height + textLabel.intrinsicContentSize.height
+        let height = forecastQuickView.intrinsicContentSize.height + textLabel.intrinsicContentSize.height + ForecastDayQuickViewConfig.Layout.TextLabelTopPadding
         return CGSize(width: super.intrinsicContentSize.width, height: height)
     }
 }

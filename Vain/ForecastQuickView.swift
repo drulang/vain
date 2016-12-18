@@ -21,6 +21,8 @@ class ForecastQuickView : UIView {
         addSubview(iconImageView)
         addSubview(textLabel)
         
+        clipsToBounds = false
+        
         iconImageView.image = #imageLiteral(resourceName: "IconWeatherSun")
         iconImageView.contentMode = UIViewContentMode.scaleAspectFill
         

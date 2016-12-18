@@ -25,6 +25,8 @@ class CurrentForecastViewController: UIViewController {
         view.addSubview(dayOverviewLabel)
         view.addSubview(weatherConditionImageView)
         
+        weatherConditionImageView.image = #imageLiteral(resourceName: "IconWeatherSun")
+        weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
 
         tempLabel.font = Appearance.Font.HeroFont
  
@@ -40,8 +42,9 @@ class CurrentForecastViewController: UIViewController {
             locationLabel.autoPinEdge(toSuperviewMargin: ALEdge.left)
             locationLabel.autoPinEdge(ALEdge.right, to: ALEdge.left, of: weatherConditionImageView, withOffset: Appearance.Layout.Margin)
             
-            weatherConditionImageView.autoPinEdge(toSuperviewEdge: ALEdge.top, withInset: 25)
+            weatherConditionImageView.autoPinEdge(toSuperviewEdge: ALEdge.top)
             weatherConditionImageView.autoPinEdge(toSuperviewMargin: ALEdge.right)
+            weatherConditionImageView.autoSetDimensions(to: CGSize(width: 100, height: 100))
             
             tempLabel.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
             tempLabel.autoConstrainAttribute(ALAttribute.bottom, to: ALAttribute.horizontal, of: self.view, withOffset: -15)

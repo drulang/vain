@@ -35,6 +35,7 @@ class MultiDayForecastViewController: UIViewController {
         
         setupCollectionView()
 
+        view.clipsToBounds = false
         view.addSubview(collectionView)
         
         view.setNeedsUpdateConstraints()
