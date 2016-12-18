@@ -9,23 +9,32 @@
 import UIKit
 
 class MultiDayForecastViewController: UIViewController {
-    fileprivate let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let collectionView:UICollectionView
+    fileprivate let collectionViewLayout = UICollectionViewFlowLayout()
     fileprivate var constraintsAdded = false
-
+    internal    let forecastType = WeatherForecastType.FiveDay
+    
     internal    var forecast:MultiDayForecast? {
         didSet {
             refresh()
         }
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = UIColor.clear
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.register(ForecastDayQuickCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.Cell)
-        
+        setupCollectionView()
+
         view.addSubview(collectionView)
         
         view.setNeedsUpdateConstraints()
@@ -41,6 +50,30 @@ class MultiDayForecastViewController: UIViewController {
         }
         
         super.updateViewConstraints()
+    }
+    
+}
+
+
+//MARK: Helpers
+extension MultiDayForecastViewController {
+
+    func setupCollectionView() {
+        //Layout
+        let width = view.frame.size.width / CGFloat(forecastType.rawValue)
+        let height = ForecastDayQuickCollectionViewCell().intrinsicContentSize.height
+        collectionViewLayout.itemSize = CGSize(width: width, height: height)
+        collectionViewLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        collectionViewLayout.minimumInteritemSpacing = 0
+        collectionViewLayout.minimumLineSpacing = 0
+        preferredContentSize = CGSize(width: view.frame.width, height: height)
+        
+        // View
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.register(ForecastDayQuickCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.Cell)
     }
 }
 
@@ -62,6 +95,7 @@ extension MultiDayForecastViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
+        //TODO: Fix
         return forecast?.days.count ?? 0
     }
     

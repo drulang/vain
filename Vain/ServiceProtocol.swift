@@ -16,9 +16,10 @@ enum LocationServiceError: Error {
     
 }
 
-enum WeatherForecastType {
-    case FiveDay
+enum WeatherForecastType: UInt {
+    case FiveDay = 5
 }
+
 
 /**
  Provides weather information such as current weather, 5 day forecast, etc.

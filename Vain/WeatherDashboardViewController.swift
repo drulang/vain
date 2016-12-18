@@ -44,7 +44,7 @@ class WeatherDashboardViewController: UIViewController {
                 weekForecastView?.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: currentForecastView)
                 weekForecastView?.autoPinEdge(toSuperviewEdge: ALEdge.left)
                 weekForecastView?.autoPinEdge(toSuperviewEdge: ALEdge.right)
-                weekForecastView?.autoSetDimension(ALDimension.height, toSize: 65)
+                weekForecastView?.autoSetDimension(ALDimension.height, toSize: weekForecastViewController.preferredContentSize.height)
             } else {
                 log.warning("Attempting to layout weekForecastViewController.view with a nil currentForecastViewController.view")
             }

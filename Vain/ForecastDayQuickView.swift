@@ -38,8 +38,14 @@ class ForecastDayQuickView : UIView {
             
             textLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: forecastQuickView)
             textLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.top)
+            textLabel.autoSetDimension(ALDimension.height, toSize: textLabel.intrinsicContentSize.height)
         }
         
         super.updateConstraints()
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let height = forecastQuickView.intrinsicContentSize.height + textLabel.intrinsicContentSize.height
+        return CGSize(width: super.intrinsicContentSize.width, height: height)
     }
 }

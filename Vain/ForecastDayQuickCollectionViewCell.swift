@@ -32,4 +32,8 @@ class ForecastDayQuickCollectionViewCell : UICollectionViewCell {
 
         super.updateConstraints()
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return forecastView.intrinsicContentSize
+    }
 }

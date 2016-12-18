@@ -21,8 +21,11 @@ class ForecastQuickView : UIView {
         addSubview(iconImageView)
         addSubview(textLabel)
         
+        iconImageView.image = #imageLiteral(resourceName: "IconWeatherSun")
+        iconImageView.contentMode = UIViewContentMode.scaleAspectFit
         textLabel.text = "32/80"
         
+        boxTheHellOutOfEverything()
         setNeedsUpdateConstraints()
     }
     
@@ -34,11 +37,17 @@ class ForecastQuickView : UIView {
         if !constraintsAdded {
             constraintsAdded = true
             
-            iconImageView.autoPinEdgesToSuperviewEdges()
+            iconImageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.bottom)
+            iconImageView.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: textLabel)
             
             textLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: ALEdge.top)
+            textLabel.autoSetDimension(ALDimension.height, toSize: textLabel.intrinsicContentSize.height)
         }
 
         super.updateConstraints()
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width, height: 50)
     }
 }
