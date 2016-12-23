@@ -30,6 +30,10 @@ class CurrentForecastViewController: UIViewController {
 
         tempLabel.font = Appearance.Font.HeroFont
  
+        CommandCenter.shared.currentForecast(atLocation: Location(), completion: {(forecast:Forecast?, error:WeatherServiceError?) in
+            log.debug("Forecast:  \(forecast)")
+        })
+        
         view.setNeedsUpdateConstraints()
         refresh()
     }

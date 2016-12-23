@@ -10,8 +10,8 @@ import Foundation
 
 class Forecast : Model {
     var date:Date?
-    var hi:UnitTemperature?
-    var lo:UnitTemperature?
+    var hi:NSMeasurement?
+    var lo:NSMeasurement?
     var condition:WeatherCondition?
 }
 
