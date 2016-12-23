@@ -16,6 +16,11 @@ class CurrentForecastViewController: UIViewController {
     fileprivate let dayOverviewLabel = UILabel(forAutoLayout: ())
     fileprivate let weatherConditionImageView = UIImageView(forAutoLayout: ())
     fileprivate var constraintsAdded = false
+    fileprivate var forecast:Forecast? {
+        didSet {
+            refresh()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +37,7 @@ class CurrentForecastViewController: UIViewController {
  
         CommandCenter.shared.currentForecast(atLocation: Location(), completion: {(forecast:Forecast?, error:WeatherServiceError?) in
             log.debug("Forecast:  \(forecast)")
+            self.forecast = forecast
         })
         
         view.setNeedsUpdateConstraints()
@@ -69,6 +75,12 @@ extension CurrentForecastViewController : Refresh {
         locationLabel.text = "test"
         tempLabel.text = "32"
         dayOverviewLabel.text = "32/54 Monday"
+        
+        if let currentTemp = forecast?.current {
+            self.tempLabel.text = "\(currentTemp.doubleValue)"
+        } else {
+            self.tempLabel.text = "-"
+        }
     }
 }
 

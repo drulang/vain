@@ -31,8 +31,12 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
     
     internal func currentForecast(atLocation location: Location, completion: (Forecast?, WeatherServiceError?) -> Void) {
         let forecast = Forecast()
+
         forecast.date = Date()
-  
+        forecast.current = NSMeasurement(doubleValue: 75, unit: UnitTemperature.fahrenheit)
+        forecast.hi = NSMeasurement(doubleValue: 74, unit: UnitTemperature.fahrenheit)
+        forecast.lo = NSMeasurement(doubleValue: 60, unit: UnitTemperature.fahrenheit)
+        
         completion(forecast, nil)
     }
     
