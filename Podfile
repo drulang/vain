@@ -6,7 +6,7 @@ target 'Vain' do
   use_frameworks!
 
   # Pods for Vain
-  pod 'Alamofire',    '~>4.0.0'
+  pod 'Alamofire',    '~>4.0'
   pod 'PureLayout',   '~>3.0.2'
   pod 'SwiftyBeaver', '~>1.0.3'
   pod 'SwiftyJSON',   '~>3.0.0'

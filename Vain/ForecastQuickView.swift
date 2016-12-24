@@ -23,7 +23,7 @@ class ForecastQuickView : UIView {
         
         clipsToBounds = false
         
-        iconImageView.image = #imageLiteral(resourceName: "IconWeatherSun")
+        iconImageView.image = #imageLiteral(resourceName: "IconWeatherClearSkyDay")
         iconImageView.contentMode = UIViewContentMode.scaleAspectFill
         
         textLabel.textAlignment = NSTextAlignment.center
