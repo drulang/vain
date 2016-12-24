@@ -14,6 +14,7 @@ class Forecast : Model {
     var hi:NSMeasurement?
     var lo:NSMeasurement?
     var condition:WeatherCondition?
+    
 }
 
 class MultiDayForecast : Model {
