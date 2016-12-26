@@ -42,7 +42,7 @@ class CommandCenter {
 // MARK: WeatherDataSource
 extension CommandCenter: WeatherServiceDataSource {
 
-    internal func currentForecast(atLocation location: Location, completion: (Forecast?, WeatherServiceError?) -> Void) {
+    internal func currentForecast(atLocation location: Location, completion: @escaping (Forecast?, WeatherServiceError?) -> Void) {
         if let service = weatherServices.first {
             service.currentForecast(atLocation: location, completion: { (forecast:Forecast?, error:WeatherServiceError?) in
 

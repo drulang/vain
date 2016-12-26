@@ -8,9 +8,10 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 fileprivate struct APIConfig {
-    static let BaseURLString = "http://api.openweathermap.org/data/2.5"
+    static let BaseURLString = "http://api.openweathermap.org/data/2.5" //TODO: Move into plist
     static let Key = "36ddc8780ce4c36953b60d7c8e2d70d6" //TODO: Move into plist
     static let KeyParameter = "appid"
 }
@@ -53,6 +54,31 @@ fileprivate enum Router : URLRequestConvertible {
     }
 }
 
+
+fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
+    case currentForecast(withData:Any)
+    
+    func adaptToLocalFormat() -> Any? {
+        switch self {
+        case let .currentForecast(data):
+            let json = JSON(data)
+            
+            var returnDict:[String:Any] = [:]
+            
+            //TODO: Move param string vals to somewhere more appropriate
+            let subJson = json["main"]
+            
+            returnDict["hi"] = subJson["temp_max"].double
+            returnDict["lo"] = subJson["temp_min"].double
+            returnDict["current"] = subJson["temp"].double
+            returnDict["datetime"] = json["dt"].double
+
+            return returnDict
+        }
+    }
+}
+
+
 class OpenWeatherMapService {
     
 }
@@ -69,28 +95,31 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
         }
 
         let forecast = MultiDayForecast()
-        let f1 = Forecast()
-        let f2 = Forecast()
-        let f3 = Forecast()
-        let f4 = Forecast()
-        let f5 = Forecast()
-        forecast.days = [f1, f2, f3, f4, f5]
-        
+
         completion(forecast, nil)
     }
     
-    internal func currentForecast(atLocation location: Location, completion: (Forecast?, WeatherServiceError?) -> Void) {
-        let forecast = Forecast()
-        Alamofire.request(Router.currentForecast(location: Location())).responseJSON { (response: DataResponse) in
+    internal func currentForecast(atLocation location: Location, completion: @escaping (Forecast?, WeatherServiceError?) -> Void) {
 
+        Alamofire.request(Router.currentForecast(location: location)).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                let data = OpenWeatherDataHandler.currentForecast(withData: value).adaptToLocalFormat()
+
+                if let data = data as? [String:Any] {
+                    do {
+                        let forecast = try Forecast(withData: data)
+                        completion(forecast, nil)
+                    } catch {
+                        completion(nil, WeatherServiceError.DataSerializationError)
+                    }
+                } else {
+                    completion(nil, WeatherServiceError.DataSerializationError)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
-        
-        forecast.date = Date()
-        forecast.current = NSMeasurement(doubleValue: 75, unit: UnitTemperature.fahrenheit)
-        forecast.hi = NSMeasurement(doubleValue: 74, unit: UnitTemperature.fahrenheit)
-        forecast.lo = NSMeasurement(doubleValue: 60, unit: UnitTemperature.fahrenheit)
-        
-        completion(forecast, nil)
     }
     
 }

@@ -9,7 +9,8 @@
 import Foundation
 
 enum WeatherServiceError : Error {
-    case Unavailable
+    case UnavailableError
+    case DataSerializationError
 }
 
 enum LocationServiceError: Error {
@@ -26,7 +27,7 @@ enum WeatherForecastType: UInt {
  */
 protocol WeatherServiceDataSource {
     
-    func currentForecast(atLocation location:Location, completion:(_:Forecast?, _:WeatherServiceError?)->Void);
+    func currentForecast(atLocation location:Location, completion:@escaping (_:Forecast?, _:WeatherServiceError?)->Void);
     func fiveDayForecast(atLocation location:Location, completion:(_:MultiDayForecast?, _:WeatherServiceError?)->Void);
 
 }
