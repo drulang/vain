@@ -7,7 +7,12 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Model {
     var modelId:Int?
+    
+    convenience init(withData data:Any) {
+        self.init()
+    }
 }
