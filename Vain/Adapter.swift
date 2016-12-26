@@ -10,6 +10,6 @@ import Foundation
 
 protocol LocalDataAdapter {
     
-    func adaptToLocalFormat() -> Any?
+    func adaptToLocalFormat(foreignData:Any) -> Any?
 
 }

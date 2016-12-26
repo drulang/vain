@@ -67,12 +67,12 @@ fileprivate enum Router : URLRequestConvertible {
 
 
 fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
-    case currentForecast(withData:Any)
+    case currentForecast
     
-    func adaptToLocalFormat() -> Any? {
+    func adaptToLocalFormat(foreignData: Any) -> Any? {
         switch self {
-        case let .currentForecast(data):
-            let json = JSON(data)
+        case .currentForecast:
+            let json = JSON(foreignData)
             let forecastJson = json[API.Parameters.CurrentForecast]
             var returnDict:[String:Any] = [:]
             
@@ -112,7 +112,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
         Alamofire.request(Router.currentForecast(location: location)).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                let data = OpenWeatherDataHandler.currentForecast(withData: value).adaptToLocalFormat()
+                let data = OpenWeatherDataHandler.currentForecast.adaptToLocalFormat(foreignData: value)
 
                 if let data = data as? [String:Any] {
                     do {
