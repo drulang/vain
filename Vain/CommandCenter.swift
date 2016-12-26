@@ -51,7 +51,13 @@ extension CommandCenter: WeatherServiceDataSource {
         }
     }
     
-    internal func dailyForecast(atLocation location: Location, numberOfDays: UInt, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
+    internal func dailyForecast(atLocation location: Location, numberOfDays: Int, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
+        if let service = weatherServices.first {
+            service.dailyForecast(atLocation: location, numberOfDays: numberOfDays, completion: { (forecast:DailyForecast?, error:WeatherServiceError?) in
+                
+                //completion(forecast, error)
+            })
+        }
         
     }
 }

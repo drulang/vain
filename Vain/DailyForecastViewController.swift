@@ -95,8 +95,6 @@ extension DailyForecastViewController: Refresh {
 extension DailyForecastViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-        //TODO: Fix
         return dailyForecast?.days.count ?? 0
     }
     

@@ -20,11 +20,20 @@ fileprivate struct API {
     }
     
     struct Parameters {
+        struct CurrentForecastTemperature {
+            static let Hi = "temp_max"
+            static let Lo = "temp_min"
+            static let Current = "temp"
+        }
+
+        struct DailyForecastTemperature {
+            static let Hi = "max"
+            static let Lo = "min"
+        }
+
         static let CurrentForecast = "main"
+        static let DailyForecast = "temp"
         static let APIKey = "appid"
-        static let Hi = "temp_max"
-        static let Lo = "temp_min"
-        static let Current = "temp"
         static let Date = "dt"
         static let Location = "q"
         static let Count = "cnt"
@@ -81,13 +90,19 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
     func adaptToLocalFormat(foreignData: Any) -> Any? {
         switch self {
         case .currentForecast:
-            let json = JSON(foreignData)
+            var json:JSON
+            if foreignData is JSON {
+                json = foreignData as! JSON
+            } else {
+                json = JSON(foreignData)
+            }
+
             let forecastJson = json[API.Parameters.CurrentForecast]
             var returnDict:[String:Any] = [:]
 
-            returnDict[ParameterForecast.Hi] = forecastJson[API.Parameters.Hi].double
-            returnDict[ParameterForecast.Lo] = forecastJson[API.Parameters.Lo].double
-            returnDict[ParameterForecast.Current] = forecastJson[API.Parameters.Current].double
+            returnDict[ParameterForecast.Hi] = forecastJson[API.Parameters.CurrentForecastTemperature.Hi].double
+            returnDict[ParameterForecast.Lo] = forecastJson[API.Parameters.CurrentForecastTemperature.Lo].double
+            returnDict[ParameterForecast.Current] = forecastJson[API.Parameters.CurrentForecastTemperature.Current].double
             returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
 
             var weatherConditionType:WeatherConditionType?
@@ -102,7 +117,30 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
             return returnDict
             
         case .dailyForecast:
-            return nil
+            var json:JSON
+            if foreignData is JSON {
+                json = foreignData as! JSON
+            } else {
+                json = JSON(foreignData)
+            }
+            
+            let temperatureJSON = json[API.Parameters.DailyForecast]
+            
+            var returnDict:[String:Any] = [:]
+            
+            returnDict[ParameterForecast.Hi] = temperatureJSON[API.Parameters.DailyForecastTemperature.Hi].double
+            returnDict[ParameterForecast.Lo] = temperatureJSON[API.Parameters.DailyForecastTemperature.Lo].double
+            returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
+            
+            var weatherConditionType:WeatherConditionType?
+            if let weatherConditionId = extractWeatherConditionId(weatherConditions: json[API.Parameters.WeatherCondition]) {
+                weatherConditionType = adaptWeatherCondition(id: weatherConditionId)
+            } else {
+                log.warning("Unable to map the current forecast weather condition type")
+            }
+            returnDict[ParameterForecast.WeatherCondition] = weatherConditionType?.rawValue
+
+            return returnDict
         }
     }
     
@@ -145,11 +183,49 @@ class OpenWeatherMapService {
 //MARK: WeatherDataSource
 extension OpenWeatherMapService: WeatherServiceDataSource {
     
-    internal func dailyForecast(atLocation location: Location, numberOfDays: UInt, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
+    internal func dailyForecast(atLocation location: Location, numberOfDays: Int, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
+        guard numberOfDays > 0 else {
+            log.warning("Attempting to fetch an empty forecast...")
+            completion(nil, WeatherServiceError.ParameterError)
+            return
+        }
+        
         Alamofire.request(Router.dailyForecast(location: Location(), numberOfDays: 5)).responseJSON { (response) in
-            
-            
-            
+            switch response.result {
+                
+            case .success(let value):
+                var days:[Forecast] = []
+                
+                let json = JSON(value)
+                
+                for (_, forecastSubJson):(String, JSON) in json[API.Parameters.DailyWeatherList] {
+                    let convertedData = OpenWeatherDataHandler.dailyForecast.adaptToLocalFormat(foreignData: forecastSubJson)
+                    
+                    if let convertedData = convertedData as? [String:Any] {
+                        do {
+                            let forecast = try Forecast(withData: convertedData) //TODO: Wrap
+                            days.append(forecast)
+                        } catch {
+                            completion(nil, WeatherServiceError.DataSerializationError)
+                        }
+                    } else {
+                        log.error("Received an unexpected format while adapting OpenWeatherData")
+                    }
+                }
+                
+                if days.count != numberOfDays {
+                    log.warning("Expected to build forecast with a total of \(numberOfDays), but ended with \(days.count)")
+                }
+                
+                let forecast = DailyForecast()
+                forecast.days = days
+                
+                completion(forecast, nil)
+            case .failure(let error):
+                log.error(error)
+                completion(nil, WeatherServiceError.UnavailableError)
+                
+            }
         }
     }
 
@@ -166,7 +242,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
                         let forecast = try Forecast(withData: data)
                         completion(forecast, nil)
                     } catch {
-                        completion(nil, WeatherServiceError.DataSerializationError)
+                        completion(nil, WeatherServiceError.DataSerializationError)  //TODO: Investigate using defer
                     }
                 } else {
                     completion(nil, WeatherServiceError.DataSerializationError)
