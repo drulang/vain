@@ -10,16 +10,30 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-fileprivate struct APIConfig {
-    static let BaseURLString = "http://api.openweathermap.org/data/2.5" //TODO: Move into plist
-    static let Key = "36ddc8780ce4c36953b60d7c8e2d70d6" //TODO: Move into plist
-    static let KeyParameter = "appid"
+fileprivate struct API {
+    struct Config {
+        static let BaseURLString = "http://api.openweathermap.org/data/2.5" //TODO: Move into plist
+        
+        struct Credentials {
+            static let Key = "36ddc8780ce4c36953b60d7c8e2d70d6" //TODO: Move into plist
+        }
+    }
+    
+    struct Parameters {
+        static let CurrentForecast = "main"
+        static let APIKey = "appid"
+        static let Hi = "temp_max"
+        static let Lo = "temp_min"
+        static let Current = "temp"
+        static let Date = "dt"
+    }
 }
 
 fileprivate struct APIParameters {
     static let Location = "q"
     static let Count = "cnt"
 }
+
 
 fileprivate enum Router : URLRequestConvertible {
     case currentForecast(location:Location)
@@ -44,11 +58,11 @@ fileprivate enum Router : URLRequestConvertible {
             }
         }()
         
-        let url = try APIConfig.BaseURLString.asURL()
+        let url = try API.Config.BaseURLString.asURL()
         let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
         
         var urlParameters = result.parameters
-        urlParameters.updateValue(APIConfig.Key, forKey: APIConfig.KeyParameter)
+        urlParameters.updateValue(API.Config.Credentials.Key, forKey: API.Parameters.APIKey)
 
         return try URLEncoding.default.encode(urlRequest, with: urlParameters)
     }
@@ -62,16 +76,13 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
         switch self {
         case let .currentForecast(data):
             let json = JSON(data)
-            
+            let forecastJson = json[API.Parameters.CurrentForecast]
             var returnDict:[String:Any] = [:]
             
-            //TODO: Move param string vals to somewhere more appropriate
-            let subJson = json["main"]
-            
-            returnDict["hi"] = subJson["temp_max"].double
-            returnDict["lo"] = subJson["temp_min"].double
-            returnDict["current"] = subJson["temp"].double
-            returnDict["datetime"] = json["dt"].double
+            returnDict[ParameterForecast.Hi] = forecastJson[API.Parameters.Hi].double
+            returnDict[ParameterForecast.Lo] = forecastJson[API.Parameters.Lo].double
+            returnDict[ParameterForecast.Current] = forecastJson[API.Parameters.Current].double
+            returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
 
             return returnDict
         }

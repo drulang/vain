@@ -8,9 +8,14 @@
 
 import Foundation
 
-enum ModelError: Error {
-    case SerializationError
+
+struct ParameterForecast {
+    static let Hi = "hi"
+    static let Lo = "lo"
+    static let Date = "date"
+    static let Current = "current"
 }
+
 
 class Forecast : Model {
     var date:Date
@@ -42,15 +47,15 @@ class Forecast : Model {
     }
     
     convenience init(withData data:[String:Any]) throws {
-        guard let hi = data["hi"] as? Double,
-            let lo = data["lo"] as? Double,
-            let date = data["datetime"] as? Double
+        guard let hi = data[ParameterForecast.Hi] as? Double,
+            let lo = data[ParameterForecast.Lo] as? Double,
+            let date = data[ParameterForecast.Date] as? Double
             else {
                 throw ModelError.SerializationError
         }
         
         let condition = WeatherCondition(type: WeatherConditionType.ClearSky, timeOfDay: TimeOfDay.Day)
-        let current = data["current"] as? Double
+        let current = data[ParameterForecast.Current] as? Double
         
         self.init(hi: hi, lo:lo, current:current, condition:condition, date:date)
     }

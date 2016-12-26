@@ -9,6 +9,12 @@
 import Foundation
 import SwiftyJSON
 
+
+enum ModelError: Error {
+    case SerializationError
+}
+
+
 class Model {
     var modelId:Int?
     
