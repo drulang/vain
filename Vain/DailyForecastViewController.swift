@@ -40,7 +40,11 @@ class DailyForecastViewController: UIViewController {
         
         view.setNeedsUpdateConstraints()
         
-        refresh()
+        
+        CommandCenter.shared.dailyForecast(atLocation: Location(), numberOfDays: WeatherForecastType.FiveDay.rawValue, completion: {(dailyForecast:DailyForecast?, error:WeatherServiceError?) in
+            self.dailyForecast = dailyForecast
+        })
+        
     }
     
     override func updateViewConstraints() {
@@ -82,11 +86,7 @@ extension DailyForecastViewController {
 //MARK: Refresh
 extension DailyForecastViewController: Refresh {
     func refresh() {
-    
-        CommandCenter.shared.dailyForecast(atLocation: Location(), numberOfDays: WeatherForecastType.FiveDay.rawValue, completion: {(dailyForecast:DailyForecast?, error:WeatherServiceError?) in
-            self.dailyForecast = dailyForecast
-            self.collectionView.reloadData()
-        })
+        self.collectionView.reloadData()
     }
 }
 

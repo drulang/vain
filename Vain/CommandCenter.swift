@@ -55,7 +55,7 @@ extension CommandCenter: WeatherServiceDataSource {
         if let service = weatherServices.first {
             service.dailyForecast(atLocation: location, numberOfDays: numberOfDays, completion: { (forecast:DailyForecast?, error:WeatherServiceError?) in
                 
-                //completion(forecast, error)
+                completion(forecast, error)
             })
         }
         

@@ -15,7 +15,7 @@ fileprivate struct API {
         static let BaseURLString = "http://api.openweathermap.org/data/2.5" //TODO: Move into plist
         
         struct Credentials {
-            static let Key = "36ddc8780ce4c36953b60d7c8e2d70d6" //TODO: Move into plist
+            static let Key = "7d037b6474f28d73e1f202936a68065c" //TODO: Move into plist
         }
     }
     
