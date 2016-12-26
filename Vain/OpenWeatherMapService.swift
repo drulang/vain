@@ -26,12 +26,9 @@ fileprivate struct API {
         static let Lo = "temp_min"
         static let Current = "temp"
         static let Date = "dt"
+        static let Location = "q"
+        static let Count = "cnt"
     }
-}
-
-fileprivate struct APIParameters {
-    static let Location = "q"
-    static let Count = "cnt"
 }
 
 
@@ -44,14 +41,14 @@ fileprivate enum Router : URLRequestConvertible {
             switch self {
             case .currentForecast(_):
                 let parameters = [
-                    APIParameters.Location : "London"
+                    API.Parameters.Location : "London"
                 ]
                 return ("/weather", parameters)
                 
             case let .dailyForecast(_, numberOfDays):
                 let parameters = [
-                    APIParameters.Location: "London",
-                    APIParameters.Count: numberOfDays
+                    API.Parameters.Location: "London",
+                    API.Parameters.Count: numberOfDays
                     ] as [String : Any]
                 
                 return ("/forecast/daily", parameters)
