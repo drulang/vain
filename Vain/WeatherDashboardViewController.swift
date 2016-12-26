@@ -12,7 +12,7 @@ import PureLayout
 class WeatherDashboardViewController: UIViewController {
 
     fileprivate let currentForecastViewController = CurrentForecastViewController()
-    fileprivate let weekForecastViewController = MultiDayForecastViewController()
+    fileprivate let weekForecastViewController = DailyForecastViewController()
     
     fileprivate var constraintsAdded = false
 

@@ -30,6 +30,7 @@ fileprivate struct API {
         static let Count = "cnt"
         static let ID = "id"
         static let WeatherCondition = "weather"
+        static let DailyWeatherList = "list"
     }
 }
 
@@ -112,6 +113,19 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
         }
     }
     
+    /**
+     Extract the first weather condition id.
+     
+     Example of expected JSON format:
+        "weather": [
+            {
+                "id": 500,
+                "main": "Rain",
+                "description": "light rain",
+                "icon": "10d"
+            }
+        ],
+     */
     func extractWeatherConditionId(weatherConditions:JSON) -> UInt? {
         return weatherConditions[0][API.Parameters.ID].uInt
     }
@@ -126,17 +140,14 @@ class OpenWeatherMapService {
 //MARK: WeatherDataSource
 extension OpenWeatherMapService: WeatherServiceDataSource {
     
-    // TODO: Change this to a daily forecast that takes the number of days as a param
-    internal func fiveDayForecast(atLocation location: Location, completion: (MultiDayForecast?, WeatherServiceError?) -> Void) {
-        
+    internal func dailyForecast(atLocation location: Location, numberOfDays: UInt, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
         Alamofire.request(Router.dailyForecast(location: Location(), numberOfDays: 5)).responseJSON { (response) in
             
+            
+            
         }
-
-        let forecast = MultiDayForecast()
-
-        completion(forecast, nil)
     }
+
     
     internal func currentForecast(atLocation location: Location, completion: @escaping (Forecast?, WeatherServiceError?) -> Void) {
 
@@ -156,7 +167,8 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
                     completion(nil, WeatherServiceError.DataSerializationError)
                 }
             case .failure(let error):
-                print(error)
+                log.error(error)
+                completion(nil, WeatherServiceError.UnavailableError)
             }
         }
     }

@@ -28,7 +28,7 @@ enum WeatherForecastType: UInt {
 protocol WeatherServiceDataSource {
     
     func currentForecast(atLocation location:Location, completion:@escaping (_:Forecast?, _:WeatherServiceError?)->Void);
-    func fiveDayForecast(atLocation location:Location, completion:(_:MultiDayForecast?, _:WeatherServiceError?)->Void);
+    func dailyForecast(atLocation location:Location, numberOfDays:UInt, completion:@escaping (_:DailyForecast?, _:WeatherServiceError?)->Void);
 
 }
 

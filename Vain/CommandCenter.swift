@@ -51,7 +51,7 @@ extension CommandCenter: WeatherServiceDataSource {
         }
     }
     
-    internal func fiveDayForecast(atLocation location: Location, completion: (MultiDayForecast?, WeatherServiceError?) -> Void) {
+    internal func dailyForecast(atLocation location: Location, numberOfDays: UInt, completion: @escaping (DailyForecast?, WeatherServiceError?) -> Void) {
         
     }
 }

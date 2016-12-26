@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MultiDayForecastViewController: UIViewController {
+class DailyForecastViewController: UIViewController {
     fileprivate let collectionView:UICollectionView
     fileprivate let collectionViewLayout = UICollectionViewFlowLayout()
     fileprivate var constraintsAdded = false
     internal    let forecastType = WeatherForecastType.FiveDay
     
-    internal    var forecast:MultiDayForecast? {
+    internal    var dailyForecast:DailyForecast? {
         didSet {
             refresh()
         }
@@ -57,7 +57,7 @@ class MultiDayForecastViewController: UIViewController {
 
 
 //MARK: Helpers
-extension MultiDayForecastViewController {
+extension DailyForecastViewController {
 
     func setupCollectionView() {
         //Layout
@@ -80,24 +80,24 @@ extension MultiDayForecastViewController {
 
 
 //MARK: Refresh
-extension MultiDayForecastViewController: Refresh {
+extension DailyForecastViewController: Refresh {
     func refresh() {
-        
-        CommandCenter.shared.fiveDayForecast(atLocation: Location(), completion: {(forecast:MultiDayForecast?, error:WeatherServiceError?) in
-                self.forecast = forecast
-                self.collectionView.reloadData()
+    
+        CommandCenter.shared.dailyForecast(atLocation: Location(), numberOfDays: WeatherForecastType.FiveDay.rawValue, completion: {(dailyForecast:DailyForecast?, error:WeatherServiceError?) in
+            self.dailyForecast = dailyForecast
+            self.collectionView.reloadData()
         })
     }
 }
 
 
 //MARK: UICollectionViewDataSource
-extension MultiDayForecastViewController: UICollectionViewDataSource {
+extension DailyForecastViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
         //TODO: Fix
-        return forecast?.days.count ?? 0
+        return dailyForecast?.days.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

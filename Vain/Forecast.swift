@@ -62,6 +62,6 @@ class Forecast : Model {
     }
 }
 
-class MultiDayForecast : Model {
+class DailyForecast : Model {
     var days:[Forecast] = [] //TODO: Evaluate if this should be constant
 }
