@@ -28,6 +28,8 @@ fileprivate struct API {
         static let Date = "dt"
         static let Location = "q"
         static let Count = "cnt"
+        static let ID = "id"
+        static let WeatherCondition = "weather"
     }
 }
 
@@ -68,21 +70,50 @@ fileprivate enum Router : URLRequestConvertible {
 
 fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
     case currentForecast
-    
+    case dailyForecast
+
     func adaptToLocalFormat(foreignData: Any) -> Any? {
         switch self {
         case .currentForecast:
             let json = JSON(foreignData)
             let forecastJson = json[API.Parameters.CurrentForecast]
             var returnDict:[String:Any] = [:]
-            
+
             returnDict[ParameterForecast.Hi] = forecastJson[API.Parameters.Hi].double
             returnDict[ParameterForecast.Lo] = forecastJson[API.Parameters.Lo].double
             returnDict[ParameterForecast.Current] = forecastJson[API.Parameters.Current].double
             returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
 
+            var weatherConditionType:WeatherConditionType?
+            if let weatherConditionId = extractWeatherConditionId(weatherConditions: json[API.Parameters.WeatherCondition]) {
+                weatherConditionType = adaptWeatherCondition(id: weatherConditionId)
+            } else {
+                log.warning("Unable to map the current forecast weather condition type")
+            }
+
+            returnDict[ParameterForecast.WeatherCondition] = weatherConditionType?.rawValue
+
             return returnDict
+            
+        case .dailyForecast:
+            return nil
         }
+    }
+    
+    /** 
+     Helper to map the weather condition id's to local WeatherConditionType
+
+     https://openweathermap.org/weather-conditions
+     */
+    func adaptWeatherCondition(id:UInt) -> WeatherConditionType? {
+        switch id {
+        case 800 ... 899: return WeatherConditionType.ClearSky
+        default: return nil
+        }
+    }
+    
+    func extractWeatherConditionId(weatherConditions:JSON) -> UInt? {
+        return weatherConditions[0][API.Parameters.ID].uInt
     }
 }
 

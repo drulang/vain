@@ -14,6 +14,7 @@ struct ParameterForecast {
     static let Lo = "lo"
     static let Date = "date"
     static let Current = "current"
+    static let WeatherCondition = "weather_condition_type"
 }
 
 
