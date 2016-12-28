@@ -83,7 +83,7 @@ fileprivate enum Router : URLRequestConvertible {
 }
 
 
-fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
+fileprivate enum OpenWeatherDataTransformer : LocalDataAdapter {
     case currentForecast
     case dailyForecast
 
@@ -105,14 +105,15 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
             returnDict[ParameterForecast.Current] = forecastJson[API.Parameters.CurrentForecastTemperature.Current].double
             returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
 
-            var weatherConditionType:WeatherConditionType?
+            var weatherConditionType:WeatherCondition?
+            
             if let weatherConditionId = extractWeatherConditionId(weatherConditions: json[API.Parameters.WeatherCondition]) {
                 weatherConditionType = adaptWeatherCondition(id: weatherConditionId)
             } else {
                 log.warning("Unable to map the current forecast weather condition type")
             }
 
-            returnDict[ParameterForecast.WeatherCondition] = weatherConditionType?.rawValue
+            returnDict[ParameterForecast.WeatherCondition] = weatherConditionType?.condition.rawValue
 
             return returnDict
             
@@ -132,13 +133,13 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
             returnDict[ParameterForecast.Lo] = temperatureJSON[API.Parameters.DailyForecastTemperature.Lo].double
             returnDict[ParameterForecast.Date] = json[API.Parameters.Date].double
             
-            var weatherConditionType:WeatherConditionType?
+            var weatherCondition:WeatherCondition?
             if let weatherConditionId = extractWeatherConditionId(weatherConditions: json[API.Parameters.WeatherCondition]) {
-                weatherConditionType = adaptWeatherCondition(id: weatherConditionId)
+                weatherCondition = adaptWeatherCondition(id: weatherConditionId)
             } else {
                 log.warning("Unable to map the current forecast weather condition type")
             }
-            returnDict[ParameterForecast.WeatherCondition] = weatherConditionType?.rawValue
+            returnDict[ParameterForecast.WeatherCondition] = weatherCondition?.condition.rawValue
 
             return returnDict
         }
@@ -149,11 +150,24 @@ fileprivate enum OpenWeatherDataHandler : LocalDataAdapter {
 
      https://openweathermap.org/weather-conditions
      */
-    func adaptWeatherCondition(id:UInt) -> WeatherConditionType? {
+    func adaptWeatherCondition(id:UInt) -> WeatherCondition? {
+        var condition:WeatherCondition.Condition?
+        
         switch id {
-        case 800 ... 899: return WeatherConditionType.ClearSky
-        default: return nil
+        case 200...299: condition = .Thunderstorm
+        case 300...399: condition = .Drizzle
+        case 500...599: condition = .Rain
+        case 600...699: condition = .Snow
+        case 800:       condition = .ClearSky
+        case 801...899: condition = .Clouds
+        default: break
         }
+        
+        if let condition = condition {
+            return WeatherCondition(condition: condition, timeOfDay: .Day)
+        }
+
+        return nil
     }
     
     /**
@@ -199,7 +213,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
                 let json = JSON(value)
                 
                 for (_, forecastSubJson):(String, JSON) in json[API.Parameters.DailyWeatherList] {
-                    let convertedData = OpenWeatherDataHandler.dailyForecast.adaptToLocalFormat(foreignData: forecastSubJson)
+                    let convertedData = OpenWeatherDataTransformer.dailyForecast.adaptToLocalFormat(foreignData: forecastSubJson)
                     
                     if let convertedData = convertedData as? [String:Any] {
                         do {
@@ -235,7 +249,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
         Alamofire.request(Router.currentForecast(location: location)).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                let data = OpenWeatherDataHandler.currentForecast.adaptToLocalFormat(foreignData: value)
+                let data = OpenWeatherDataTransformer.currentForecast.adaptToLocalFormat(foreignData: value)
 
                 if let data = data as? [String:Any] {
                     do {

@@ -8,74 +8,53 @@
 
 import UIKit
 
-enum WeatherConditionType : String {
-    case ClearSky = "Clear Sky"
+struct WeatherCondition {
     
-    func image() -> UIImage {
-        switch self {
-        case .ClearSky:
-            return UIImage()
-        }
+    enum Condition : String {
+        case ClearSky
+        case Clouds
+        case Drizzle
+        case Rain
+        case Snow
+        case Thunderstorm
+    }
+    
+    enum TimeOfDay : String {
+        case Day
+        case Night
+    }
+    
+    static let IconPrefix = "IconWeather"
+    let condition:Condition
+    let timeOfDay:TimeOfDay
+    
+    func imageName() -> String {
+        return "\(WeatherCondition.IconPrefix)\(condition.rawValue)\(timeOfDay)"
     }
     
     func color() -> UIColor {
-        switch self {
+        switch condition {
         case .ClearSky:
-            return UIColor()
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.ClearSky.Day : Appearance.Palette.WeatherCondition.ClearSky.Night
+        case .Thunderstorm:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Thunderstorm.Day : Appearance.Palette.WeatherCondition.Thunderstorm.Night
+        case .Clouds:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Clouds.Day : Appearance.Palette.WeatherCondition.Clouds.Night
+        case .Drizzle:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Drizzle.Day : Appearance.Palette.WeatherCondition.Drizzle.Night
+        case .Rain:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Rain.Day : Appearance.Palette.WeatherCondition.Rain.Night
+        case .Snow:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Snow.Day : Appearance.Palette.WeatherCondition.Snow.Night
         }
     }
-}
-
-enum TimeOfDay : String {
-    case Day = "Day"
-    case Night = "Night"
-}
-
-private struct WeatherConditionConfig {
-    static let IconPrefix = "IconWeather"
-} 
-
-
-class WeatherCondition: Model {
-
-    let type:WeatherConditionType
-    let timeOfDay:TimeOfDay
     
-    // Computed properties
-    var name:String {
-        get { return name(withType: type) }
-    }
-
-    var imageAssetName:String {
-        get { return imageName(withType: type, timeOfDay: timeOfDay) }
-    }
-    var color:UIColor {
-        get { return color(withType: type) }
-    }
-    
-    
-    // Constructors
-    init(type:WeatherConditionType, timeOfDay:TimeOfDay) {
-        self.type = type
-        self.timeOfDay = timeOfDay
-    }
-
-}
-
-
-// MARK: Helpers
-extension WeatherCondition {
-    
-    fileprivate func name(withType type:WeatherConditionType) -> String {
-        return self.type.rawValue.capitalized
-    }
-    
-    fileprivate func imageName(withType type:WeatherConditionType, timeOfDay:TimeOfDay) -> String {
-        return "\(WeatherConditionConfig.IconPrefix)\(type.rawValue)\(timeOfDay)"
-    }
-
-    fileprivate func color(withType type:WeatherConditionType) -> UIColor {
-        return UIColor.clear
+    func displayName() -> String {
+        switch condition {
+        case .ClearSky: return "Clear Sky"
+        default: return condition.rawValue.capitalized
+        }
     }
     
 }
+

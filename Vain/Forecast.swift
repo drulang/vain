@@ -18,6 +18,11 @@ struct ParameterForecast {
 }
 
 
+enum WeatherForecastType: Int {
+    case FiveDay = 5
+}
+
+
 class Forecast : Model {
     var date:Date
     var hi:NSMeasurement
@@ -49,16 +54,19 @@ class Forecast : Model {
     
     convenience init(withData data:[String:Any]) throws {
         guard let hi = data[ParameterForecast.Hi] as? Double,
-            let lo = data[ParameterForecast.Lo] as? Double,
-            let date = data[ParameterForecast.Date] as? Double
+             let lo = data[ParameterForecast.Lo] as? Double,
+            let date = data[ParameterForecast.Date] as? Double,
+            let weatherConditionCode = data[ParameterForecast.WeatherCondition] as? String,
+            let condition = WeatherCondition.Condition(rawValue: weatherConditionCode)
+            
             else {
                 throw ModelError.SerializationError
         }
-        
-        let condition = WeatherCondition(type: WeatherConditionType.ClearSky, timeOfDay: TimeOfDay.Day)
+  
+        let weatherCondition = WeatherCondition(condition: condition, timeOfDay: .Day)
         let current = data[ParameterForecast.Current] as? Double
-        
-        self.init(hi: hi, lo:lo, current:current, condition:condition, date:date)
+
+        self.init(hi: hi, lo:lo, current:current, condition:weatherCondition, date:date)
     }
 }
 

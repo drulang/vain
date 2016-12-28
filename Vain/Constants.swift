@@ -42,6 +42,33 @@ struct Appearance {
         struct Text {
             static let Primary = UIColor.darkGray
         }
+        
+        struct WeatherCondition {
+            struct Thunderstorm {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+            struct Rain {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+            struct ClearSky {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+            struct Snow {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+            struct Clouds {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+            struct Drizzle {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
+        }
     }
     
     struct Layout {

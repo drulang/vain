@@ -35,7 +35,6 @@ class CurrentForecastViewController: UIViewController {
         view.addSubview(dayOverviewLabel)
         view.addSubview(weatherConditionImageView)
         
-        weatherConditionImageView.image = #imageLiteral(resourceName: "IconWeatherClearSkyDay")
         weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
 
         tempLabel.font = Appearance.Font.HeroFont
@@ -75,7 +74,8 @@ extension CurrentForecastViewController : Refresh {
         locationLabel.text = "test"
         tempLabel.text = "32"
         dayOverviewLabel.text = "32/54 Monday"
-        
+        weatherConditionImageView.image = UIImage(named:(forecast?.condition.imageName())!)
+
         if let currentTemp = forecast?.current {
             self.tempLabel.text = "\(currentTemp.doubleValue)"
         } else {
