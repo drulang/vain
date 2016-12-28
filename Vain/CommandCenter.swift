@@ -21,7 +21,7 @@ class CommandCenter {
     
     static      let shared      = CommandCenter()
     fileprivate var localStore  = LocalStore()
-    
+    fileprivate let locationService = LocationService()
     fileprivate var weatherServices: [WeatherServiceDataSource]
     
     init() {
@@ -38,6 +38,13 @@ class CommandCenter {
     }
 }
 
+
+//MARK: CurrentLocationDataSource
+extension CommandCenter: CurrentLocationDataSource {
+    func currentLocation(completion: (Location?, LocationServiceError?) -> Void) {
+        locationService.currentLocation(completion: completion)
+    }
+}
 
 // MARK: WeatherDataSource
 extension CommandCenter: WeatherServiceDataSource {

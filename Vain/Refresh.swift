@@ -9,5 +9,6 @@
 import Foundation
 
 protocol Refresh {
-    func refresh()
+    func refreshInterface()
+    func refreshData()
 }

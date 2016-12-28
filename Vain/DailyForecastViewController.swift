@@ -16,7 +16,13 @@ class DailyForecastViewController: UIViewController {
     
     internal    var dailyForecast:DailyForecast? {
         didSet {
-            refresh()
+            refreshInterface()
+        }
+    }
+
+    internal var location:Location? {
+        didSet {
+            refreshData()
         }
     }
     
@@ -39,12 +45,6 @@ class DailyForecastViewController: UIViewController {
         view.addSubview(collectionView)
         
         view.setNeedsUpdateConstraints()
-        
-        
-        CommandCenter.shared.dailyForecast(atLocation: Location(), numberOfDays: WeatherForecastType.FiveDay.rawValue, completion: {(dailyForecast:DailyForecast?, error:WeatherServiceError?) in
-            self.dailyForecast = dailyForecast
-        })
-        
     }
     
     override func updateViewConstraints() {
@@ -85,8 +85,19 @@ extension DailyForecastViewController {
 
 //MARK: Refresh
 extension DailyForecastViewController: Refresh {
-    func refresh() {
+    func refreshInterface() {
         self.collectionView.reloadData()
+    }
+    
+    func refreshData() {
+        guard let location = location else {
+            log.warning("Attempting to fetch daily forecast with nil location")
+            return
+        }
+
+        CommandCenter.shared.dailyForecast(atLocation: location, numberOfDays: WeatherForecastType.FiveDay.rawValue, completion: {(dailyForecast:DailyForecast?, error:WeatherServiceError?) in
+            self.dailyForecast = dailyForecast
+        })
     }
 }
 

@@ -10,6 +10,20 @@ import UIKit
 
 enum WeatherConditionType : String {
     case ClearSky = "Clear Sky"
+    
+    func image() -> UIImage {
+        switch self {
+        case .ClearSky:
+            return UIImage()
+        }
+    }
+    
+    func color() -> UIColor {
+        switch self {
+        case .ClearSky:
+            return UIColor()
+        }
+    }
 }
 
 enum TimeOfDay : String {
@@ -19,7 +33,7 @@ enum TimeOfDay : String {
 
 private struct WeatherConditionConfig {
     static let IconPrefix = "IconWeather"
-}
+} 
 
 
 class WeatherCondition: Model {

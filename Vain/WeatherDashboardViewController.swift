@@ -13,8 +13,14 @@ class WeatherDashboardViewController: UIViewController {
 
     fileprivate let currentForecastViewController = CurrentForecastViewController()
     fileprivate let weekForecastViewController = DailyForecastViewController()
-    
+
     fileprivate var constraintsAdded = false
+    fileprivate var location:Location? {
+        didSet {
+            currentForecastViewController.location = location
+            weekForecastViewController.location = location
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +31,10 @@ class WeatherDashboardViewController: UIViewController {
         
         weekForecastViewController.view.box()
         view.setNeedsUpdateConstraints()
+        
+        CommandCenter.shared.currentLocation { (location:Location?, error:LocationServiceError?) in
+            self.location = location
+        }
     }
  
     

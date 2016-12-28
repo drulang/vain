@@ -56,15 +56,15 @@ fileprivate enum Router : URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         let result: (path: String, parameters: Parameters) = {
             switch self {
-            case .currentForecast(_):
+            case let .currentForecast(location):
                 let parameters = [
-                    API.Parameters.Location : "London"
+                    API.Parameters.Location : location.displayName
                 ]
                 return (API.Path.CurrentForecast, parameters)
                 
-            case let .dailyForecast(_, numberOfDays):
+            case let .dailyForecast(location, numberOfDays):
                 let parameters = [
-                    API.Parameters.Location: "London",
+                    API.Parameters.Location: location.displayName as Any,
                     API.Parameters.Count: numberOfDays
                     ] as [String : Any]
                 
@@ -190,7 +190,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
             return
         }
         
-        Alamofire.request(Router.dailyForecast(location: Location(), numberOfDays: 5)).responseJSON { (response) in
+        Alamofire.request(Router.dailyForecast(location: location, numberOfDays: 5)).responseJSON { (response) in
             switch response.result {
                 
             case .success(let value):

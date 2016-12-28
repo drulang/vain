@@ -10,7 +10,6 @@ import UIKit
 import PureLayout
 
 class CurrentForecastViewController: UIViewController {
-    
     fileprivate let tempLabel = UILabel(forAutoLayout: ())
     fileprivate let locationLabel = UILabel(forAutoLayout: ())
     fileprivate let dayOverviewLabel = UILabel(forAutoLayout: ())
@@ -18,7 +17,13 @@ class CurrentForecastViewController: UIViewController {
     fileprivate var constraintsAdded = false
     fileprivate var forecast:Forecast? {
         didSet {
-            refresh()
+            refreshInterface()
+        }
+    }
+
+    internal var location:Location? {
+        didSet {
+            refreshData()
         }
     }
     
@@ -34,14 +39,9 @@ class CurrentForecastViewController: UIViewController {
         weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
 
         tempLabel.font = Appearance.Font.HeroFont
- 
-        CommandCenter.shared.currentForecast(atLocation: Location(), completion: {(forecast:Forecast?, error:WeatherServiceError?) in
-            log.debug("Forecast:  \(forecast)")
-            self.forecast = forecast
-        })
         
         view.setNeedsUpdateConstraints()
-        refresh()
+        refreshInterface()
     }
     
     override func updateViewConstraints() {
@@ -71,7 +71,7 @@ class CurrentForecastViewController: UIViewController {
 //MARK: Refresh
 extension CurrentForecastViewController : Refresh {
     
-    func refresh() {
+    func refreshInterface() {
         locationLabel.text = "test"
         tempLabel.text = "32"
         dayOverviewLabel.text = "32/54 Monday"
@@ -81,6 +81,18 @@ extension CurrentForecastViewController : Refresh {
         } else {
             self.tempLabel.text = "-"
         }
+    }
+    
+    func refreshData() {
+        guard let location = location else {
+            log.warning("Attempting to fetch current forecast with nil location")
+            return
+        }
+        
+        CommandCenter.shared.currentForecast(atLocation: location, completion: {(forecast:Forecast?, error:WeatherServiceError?) in
+            log.debug("Forecast:  \(forecast)")
+            self.forecast = forecast
+        })
     }
 }
 
