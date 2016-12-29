@@ -15,6 +15,8 @@ class CurrentForecastViewController: UIViewController {
     fileprivate let dayOverviewLabel = UILabel(forAutoLayout: ())
     fileprivate let weatherConditionImageView = UIImageView(forAutoLayout: ())
     fileprivate var constraintsAdded = false
+    fileprivate let formatter = ForecastMeasurementFormatter()
+
     fileprivate var forecast:Forecast? {
         didSet {
             refreshInterface()
@@ -71,13 +73,19 @@ class CurrentForecastViewController: UIViewController {
 extension CurrentForecastViewController : Refresh {
     
     func refreshInterface() {
-        locationLabel.text = "test"
-        tempLabel.text = "32"
-        dayOverviewLabel.text = "32/54 Monday"
-        weatherConditionImageView.image = UIImage(named:(forecast?.condition.imageName())!)
+        locationLabel.text = location?.displayName
 
-        if let currentTemp = forecast?.current {
-            self.tempLabel.text = "\(currentTemp.doubleValue)"
+        guard let forecast = forecast else {
+            log.warning("Attempting to refresh interface with nil forecast")
+            return
+        }
+
+        dayOverviewLabel.text = formatter.hiAndLo(forecast: forecast)
+
+        weatherConditionImageView.image = UIImage(named:forecast.condition.imageName())
+
+        if let currentTemp = forecast.current {
+            self.tempLabel.text = "\(formatter.string(from: currentTemp))"
         } else {
             self.tempLabel.text = "-"
         }

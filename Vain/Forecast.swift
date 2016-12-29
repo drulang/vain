@@ -20,17 +20,19 @@ struct ParameterForecast {
 
 enum WeatherForecastType: Int {
     case FiveDay = 5
+    case SevenDay = 7
 }
 
 
 class Forecast : Model {
     var date:Date
-    var hi:NSMeasurement
-    var lo:NSMeasurement
-    var current:NSMeasurement?
+    var hi:Measurement<Unit>
+    var lo:Measurement<Unit>
+    var current:Measurement<Unit>?
     var condition:WeatherCondition
+
     
-    init(hi:NSMeasurement, lo:NSMeasurement, current:NSMeasurement?, condition:WeatherCondition, date:Date) {
+    init(hi:Measurement<Unit>, lo:Measurement<Unit>, current:Measurement<Unit>?, condition:WeatherCondition, date:Date) {
         self.hi = hi
         self.lo = lo
         self.current = current
@@ -39,12 +41,12 @@ class Forecast : Model {
     }
     
     convenience init(hi:Double, lo:Double, current:Double?, condition:WeatherCondition, date:Double) {
-        let hiMeasurement = NSMeasurement(doubleValue: hi, unit: UnitTemperature.kelvin)
-        let loMeasurement = NSMeasurement(doubleValue: lo, unit: UnitTemperature.kelvin)
-        var currentMeasurement:NSMeasurement?
+        let hiMeasurement = Measurement<Unit>(value: hi, unit: UnitTemperature.kelvin)
+        let loMeasurement = Measurement<Unit>(value: lo, unit: UnitTemperature.kelvin)
+        var currentMeasurement:Measurement<Unit>?
         
         if let current = current {
-            currentMeasurement = NSMeasurement(doubleValue: current, unit: UnitTemperature.kelvin)
+            currentMeasurement = Measurement<Unit>(value: current, unit: UnitTemperature.kelvin)
         }
         
         let dateObj = Date(timeIntervalSince1970: date)

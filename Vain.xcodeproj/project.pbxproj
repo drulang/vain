@@ -31,6 +31,32 @@
 		719A7FF41DFF782100CE7F34 /* ForecastQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */; };
 		719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */; };
 		71B9492B1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */; };
+		71E8B8F21E14601100385A0B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FED1DFF735000CE7F34 /* UIView.swift */; };
+		71E8B8F31E14601100385A0B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58FC1DFF08E7003F2835 /* Model.swift */; };
+		71E8B8F41E14601100385A0B /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58F81DFEF3DD003F2835 /* LocalStore.swift */; };
+		71E8B8F51E14601100385A0B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58FA1DFF08DD003F2835 /* Location.swift */; };
+		71E8B8F61E14601100385A0B /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FEF1DFF73B100CE7F34 /* Refresh.swift */; };
+		71E8B8F71E14601100385A0B /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58FE1DFF0903003F2835 /* Forecast.swift */; };
+		71E8B8F81E14601100385A0B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FEB1DFF71C000CE7F34 /* UIColor.swift */; };
+		71E8B8F91E14601100385A0B /* ForecastDayQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */; };
+		71E8B8FA1E14601100385A0B /* DailyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C59061DFF2E68003F2835 /* DailyForecastViewController.swift */; };
+		71E8B8FB1E14601100385A0B /* CommandCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58ED1DFEEBF0003F2835 /* CommandCenter.swift */; };
+		71E8B8FC1E14601100385A0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58D61DFD9C8D003F2835 /* AppDelegate.swift */; };
+		71E8B8FD1E14601100385A0B /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58F01DFEEC3D003F2835 /* ServiceProtocol.swift */; };
+		71E8B8FE1E14601100385A0B /* ForecastQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */; };
+		71E8B8FF1E14601100385A0B /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C961C1E104ED500EC2923 /* Adapter.swift */; };
+		71E8B9001E14601100385A0B /* CurrentForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C59041DFF2E52003F2835 /* CurrentForecastViewController.swift */; };
+		71E8B9011E14601100385A0B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58F61DFEF35C003F2835 /* LocationService.swift */; };
+		71E8B9021E14601100385A0B /* OpenWeatherMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58F41DFEF035003F2835 /* OpenWeatherMapService.swift */; };
+		71E8B9031E14601100385A0B /* ForecastDayQuickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */; };
+		71E8B9041E14601100385A0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FE81DFF713A00CE7F34 /* Constants.swift */; };
+		71E8B9051E14601100385A0B /* WeatherDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C59021DFF2E3F003F2835 /* WeatherDashboardViewController.swift */; };
+		71E8B9061E14601100385A0B /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C59001DFF0915003F2835 /* WeatherCondition.swift */; };
+		71E8B9081E14601100385A0B /* Pods_Vain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F465A06DE8F865801796 /* Pods_Vain.framework */; };
+		71E8B90A1E14601100385A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717C58DF1DFD9C8D003F2835 /* LaunchScreen.storyboard */; };
+		71E8B90B1E14601100385A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 717C58DD1DFD9C8D003F2835 /* Assets.xcassets */; };
+		71E8B9141E146C5D00385A0B /* MeasurementFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9131E146C5D00385A0B /* MeasurementFormatter.swift */; };
+		71E8B9151E146CAF00385A0B /* MeasurementFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9131E146C5D00385A0B /* MeasurementFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +85,9 @@
 		719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastQuickView.swift; sourceTree = "<group>"; };
 		719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickView.swift; sourceTree = "<group>"; };
 		71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickCollectionViewCell.swift; sourceTree = "<group>"; };
+		71E8B9111E14601100385A0B /* Vain Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vain Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E8B9121E14601100385A0B /* Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Staging-Info.plist"; path = "/Users/dru/Documents/code/vain/Staging-Info.plist"; sourceTree = "<absolute>"; };
+		71E8B9131E146C5D00385A0B /* MeasurementFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementFormatter.swift; sourceTree = "<group>"; };
 		8013F465A06DE8F865801796 /* Pods_Vain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.release.xcconfig"; sourceTree = "<group>"; };
 		E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +99,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C6A3C754F816ACC09EFFD61 /* Pods_Vain.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E8B9071E14601100385A0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E8B9081E14601100385A0B /* Pods_Vain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				717C58D31DFD9C8D003F2835 /* Vain.app */,
+				71E8B9111E14601100385A0B /* Vain Staging.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +171,7 @@
 				717C58DD1DFD9C8D003F2835 /* Assets.xcassets */,
 				717C58DF1DFD9C8D003F2835 /* LaunchScreen.storyboard */,
 				717C58E21DFD9C8D003F2835 /* Info.plist */,
+				71E8B9121E14601100385A0B /* Staging-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -182,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				719A7FE81DFF713A00CE7F34 /* Constants.swift */,
+				71E8B9131E146C5D00385A0B /* MeasurementFormatter.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -245,6 +285,26 @@
 			productReference = 717C58D31DFD9C8D003F2835 /* Vain.app */;
 			productType = "com.apple.product-type.application";
 		};
+		71E8B8EF1E14601100385A0B /* Vain Staging */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71E8B90E1E14601100385A0B /* Build configuration list for PBXNativeTarget "Vain Staging" */;
+			buildPhases = (
+				71E8B8F01E14601100385A0B /* [CP] Check Pods Manifest.lock */,
+				71E8B8F11E14601100385A0B /* Sources */,
+				71E8B9071E14601100385A0B /* Frameworks */,
+				71E8B9091E14601100385A0B /* Resources */,
+				71E8B90C1E14601100385A0B /* [CP] Embed Pods Frameworks */,
+				71E8B90D1E14601100385A0B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Vain Staging";
+			productName = Vain;
+			productReference = 71E8B9111E14601100385A0B /* Vain Staging.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -252,7 +312,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Dru Lang";
 				TargetAttributes = {
 					717C58D21DFD9C8D003F2835 = {
@@ -260,6 +320,9 @@
 						DevelopmentTeam = M3PW445462;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+					};
+					71E8B8EF1E14601100385A0B = {
+						DevelopmentTeam = M3PW445462;
 					};
 				};
 			};
@@ -277,6 +340,7 @@
 			projectRoot = "";
 			targets = (
 				717C58D21DFD9C8D003F2835 /* Vain */,
+				71E8B8EF1E14601100385A0B /* Vain Staging */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +352,15 @@
 			files = (
 				717C58E11DFD9C8D003F2835 /* LaunchScreen.storyboard in Resources */,
 				717C58DE1DFD9C8D003F2835 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E8B9091E14601100385A0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E8B90A1E14601100385A0B /* LaunchScreen.storyboard in Resources */,
+				71E8B90B1E14601100385A0B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +380,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		71E8B8F01E14601100385A0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		71E8B90C1E14601100385A0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vain/Pods-Vain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71E8B90D1E14601100385A0B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vain/Pods-Vain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		98B5F5E4F95871E726DB0553 /* [CP] Copy Pods Resources */ = {
@@ -351,6 +469,7 @@
 				717C58F91DFEF3DD003F2835 /* LocalStore.swift in Sources */,
 				717C58FB1DFF08DD003F2835 /* Location.swift in Sources */,
 				719A7FF01DFF73B100CE7F34 /* Refresh.swift in Sources */,
+				71E8B9141E146C5D00385A0B /* MeasurementFormatter.swift in Sources */,
 				717C58FF1DFF0903003F2835 /* Forecast.swift in Sources */,
 				719A7FEC1DFF71C000CE7F34 /* UIColor.swift in Sources */,
 				719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */,
@@ -367,6 +486,35 @@
 				719A7FE91DFF713A00CE7F34 /* Constants.swift in Sources */,
 				717C59031DFF2E3F003F2835 /* WeatherDashboardViewController.swift in Sources */,
 				717C59011DFF0915003F2835 /* WeatherCondition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E8B8F11E14601100385A0B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E8B8F21E14601100385A0B /* UIView.swift in Sources */,
+				71E8B8F31E14601100385A0B /* Model.swift in Sources */,
+				71E8B8F41E14601100385A0B /* LocalStore.swift in Sources */,
+				71E8B8F51E14601100385A0B /* Location.swift in Sources */,
+				71E8B8F61E14601100385A0B /* Refresh.swift in Sources */,
+				71E8B9151E146CAF00385A0B /* MeasurementFormatter.swift in Sources */,
+				71E8B8F71E14601100385A0B /* Forecast.swift in Sources */,
+				71E8B8F81E14601100385A0B /* UIColor.swift in Sources */,
+				71E8B8F91E14601100385A0B /* ForecastDayQuickView.swift in Sources */,
+				71E8B8FA1E14601100385A0B /* DailyForecastViewController.swift in Sources */,
+				71E8B8FB1E14601100385A0B /* CommandCenter.swift in Sources */,
+				71E8B8FC1E14601100385A0B /* AppDelegate.swift in Sources */,
+				71E8B8FD1E14601100385A0B /* ServiceProtocol.swift in Sources */,
+				71E8B8FE1E14601100385A0B /* ForecastQuickView.swift in Sources */,
+				71E8B8FF1E14601100385A0B /* Adapter.swift in Sources */,
+				71E8B9001E14601100385A0B /* CurrentForecastViewController.swift in Sources */,
+				71E8B9011E14601100385A0B /* LocationService.swift in Sources */,
+				71E8B9021E14601100385A0B /* OpenWeatherMapService.swift in Sources */,
+				71E8B9031E14601100385A0B /* ForecastDayQuickCollectionViewCell.swift in Sources */,
+				71E8B9041E14601100385A0B /* Constants.swift in Sources */,
+				71E8B9051E14601100385A0B /* WeatherDashboardViewController.swift in Sources */,
+				71E8B9061E14601100385A0B /* WeatherCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +550,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -451,6 +600,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -479,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M3PW445462;
 				INFOPLIST_FILE = Vain/Info.plist;
@@ -493,9 +644,40 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = M3PW445462;
 				INFOPLIST_FILE = Vain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.drulang.Vain;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		71E8B90F1E14601100385A0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E25DEA32C36E32EA85EE85D9 /* Pods-Vain.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M3PW445462;
+				INFOPLIST_FILE = "$(SRCROOT)/Staging-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.drulang.Vain;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		71E8B9101E14601100385A0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE646FCD91F8B24BCA6F9E16 /* Pods-Vain.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M3PW445462;
+				INFOPLIST_FILE = "$(SRCROOT)/Staging-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.drulang.Vain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,6 +702,15 @@
 			buildConfigurations = (
 				717C58E61DFD9C8D003F2835 /* Debug */,
 				717C58E71DFD9C8D003F2835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71E8B90E1E14601100385A0B /* Build configuration list for PBXNativeTarget "Vain Staging" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71E8B90F1E14601100385A0B /* Debug */,
+				71E8B9101E14601100385A0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -68,6 +68,10 @@ struct Appearance {
                 static let Day = UIColor.green
                 static let Night = UIColor.blue
             }
+            struct Atmosphere {
+                static let Day = UIColor.green
+                static let Night = UIColor.blue
+            }
         }
     }
     

@@ -12,10 +12,13 @@ import SwiftyJSON
 
 fileprivate struct API {
     struct Config {
-        static let BaseURLString = "http://api.openweathermap.org/data/2.5" //TODO: Move into plist
+        static let PListHostKey = "VNOpenWeatherHost"
+        static let PListAPIKey = "VNOpenWeatherAPIKey"
+        static let BaseURLString = Bundle.main.object(forInfoDictionaryKey: API.Config.PListHostKey) as! String
+
         
         struct Credentials {
-            static let Key = "7d037b6474f28d73e1f202936a68065c" //TODO: Move into plist
+            static let Key = Bundle.main.object(forInfoDictionaryKey: API.Config.PListAPIKey) as! String
         }
     }
     
@@ -158,6 +161,7 @@ fileprivate enum OpenWeatherDataTransformer : LocalDataAdapter {
         case 300...399: condition = .Drizzle
         case 500...599: condition = .Rain
         case 600...699: condition = .Snow
+        case 700...701: condition = .Atmosphere
         case 800:       condition = .ClearSky
         case 801...899: condition = .Clouds
         default: break

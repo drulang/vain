@@ -17,6 +17,7 @@ struct WeatherCondition {
         case Rain
         case Snow
         case Thunderstorm
+        case Atmosphere
     }
     
     enum TimeOfDay : String {
@@ -46,7 +47,10 @@ struct WeatherCondition {
             return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Rain.Day : Appearance.Palette.WeatherCondition.Rain.Night
         case .Snow:
             return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Snow.Day : Appearance.Palette.WeatherCondition.Snow.Night
+        case .Atmosphere:
+            return timeOfDay == .Day ? Appearance.Palette.WeatherCondition.Atmosphere.Day : Appearance.Palette.WeatherCondition.Atmosphere.Night
         }
+        
     }
     
     func displayName() -> String {

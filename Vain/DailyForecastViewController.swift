@@ -9,6 +9,8 @@
 import UIKit
 
 class DailyForecastViewController: UIViewController {
+    fileprivate let formatter = ForecastMeasurementFormatter()
+    fileprivate let dateFormatter = DateFormatter()
     fileprivate let collectionView:UICollectionView
     fileprivate let collectionViewLayout = UICollectionViewFlowLayout()
     fileprivate var constraintsAdded = false
@@ -28,6 +30,8 @@ class DailyForecastViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        
+        dateFormatter.dateFormat = "E"
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -112,6 +116,19 @@ extension DailyForecastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.Cell, for: indexPath)
         
+        guard let forecastCell = cell as? ForecastDayQuickCollectionViewCell,
+            let forecast = dailyForecast?.days[indexPath.row]
+            else {
+                log.warning("Attempting to render an invalid cell")
+                return cell;
+        }
+        
+        forecastCell.forecastView.forecastQuickView.textLabel.text = formatter.hiAndLo(forecast: forecast)
+        forecastCell.forecastView.forecastQuickView.iconImageView.image = UIImage(named: forecast.condition.imageName())
+        
+        let dateText = dateFormatter.string(from: forecast.date)
+        forecastCell.forecastView.textLabel.text = dateText[dateText.startIndex...dateText.index(dateText.startIndex, offsetBy: 0)]
+
         return cell
     }
 }
