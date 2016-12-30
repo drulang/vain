@@ -7,8 +7,23 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Location : Model {
-    var displayName:String?
+    var displayName:String {
+        get {
+            if let name = name {
+                return name.capitalized
+            } else {
+                return "-"
+            }
+        }
+    }
     var name:String?
+    var coordinate:CLLocationCoordinate2D
+    
+    init(coordinate:CLLocationCoordinate2D, name:String?) {
+        self.name = name
+        self.coordinate = coordinate
+    }
 }

@@ -15,8 +15,13 @@ enum WeatherServiceError : Error {
 }
 
 enum LocationServiceError: Error {
-    
+    case UnavailableError
+    case AuthorizationError
+    case ReverseGeocodeError
+    case UnauthorizedError
 }
+
+
 
 /**
  Provides weather information such as current weather, 5 day forecast, etc.
@@ -34,7 +39,10 @@ protocol WeatherServiceDataSource {
  */
 protocol CurrentLocationDataSource {
     
-    func currentLocation(completion:(_:Location?, _:LocationServiceError?)->Void);
+    var userAuthorizedLocationUse: Bool { get }
+
+    func requestLocationUseAuthorization(completion: @escaping (LocationServiceError?) -> Void)
+    func currentLocation(completion:@escaping (_:Location?, _:LocationServiceError?)->Void);
 
 }
 

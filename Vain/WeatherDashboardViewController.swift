@@ -28,15 +28,23 @@ class WeatherDashboardViewController: UIViewController {
         view.backgroundColor = Appearance.Palette.Primary
 
         setupSubControllers()
-        
-        weekForecastViewController.view.box()
+
         view.setNeedsUpdateConstraints()
-        
-        CommandCenter.shared.currentLocation { (location:Location?, error:LocationServiceError?) in
-            self.location = location
+
+        if CommandCenter.shared.userAuthorizedLocationUse {
+            fetchCurrentLocation()
+        } else {
+            CommandCenter.shared.requestLocationUseAuthorization { (error:LocationServiceError?) in
+                if error != nil {
+                    self.fetchCurrentLocation()
+                } else {
+                    log.error("Failed to request user location authorization: \(error)")
+                    //TODO: Show error banner
+                }
+            }
         }
     }
- 
+    
     
     override func updateViewConstraints() {
         if !constraintsAdded {
@@ -78,5 +86,16 @@ extension WeatherDashboardViewController {
         view.addSubview(controller.view)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.didMove(toParentViewController: self)
+    }
+    
+    fileprivate func fetchCurrentLocation () {
+        log.debug("Fetching location")
+
+        CommandCenter.shared.currentLocation { (location:Location?, error:LocationServiceError?) in
+            if error != nil {
+                log.error("There was an error retreiving user's location: \(error)")
+            }
+            self.location = location
+        }
     }
 }

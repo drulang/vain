@@ -41,7 +41,16 @@ class CommandCenter {
 
 //MARK: CurrentLocationDataSource
 extension CommandCenter: CurrentLocationDataSource {
-    func currentLocation(completion: (Location?, LocationServiceError?) -> Void) {
+
+    internal var userAuthorizedLocationUse: Bool {
+        return locationService.userAuthorizedLocationUse
+    }
+
+    internal func requestLocationUseAuthorization(completion: @escaping (LocationServiceError?) -> Void) {
+        locationService.requestLocationUseAuthorization(completion: completion)
+    }
+
+    internal func currentLocation(completion: @escaping (Location?, LocationServiceError?) -> Void) {
         locationService.currentLocation(completion: completion)
     }
 }
