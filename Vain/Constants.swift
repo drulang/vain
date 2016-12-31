@@ -22,8 +22,8 @@ struct Appearance {
         static let HeadlineFont = UIFont(name: Font.Name, size: 25)
         static let TitleFont = UIFont(name: Font.Name, size: 19)
         static let SubtitleFont = UIFont(name: Font.Name, size: 17)
-        static let HeroFont = UIFont(name: Font.Name, size: 90)
-        static let IconSubtitleFont = UIFont(name: Font.Name, size: 12)
+        static let HeroFont = UIFont(name: Font.Name, size: 110)
+        static let IconSubtitleFont = UIFont(name: Font.Name, size: 15)
     }
     
     struct Border {

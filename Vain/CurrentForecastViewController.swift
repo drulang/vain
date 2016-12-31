@@ -41,6 +41,7 @@ class CurrentForecastViewController: UIViewController {
         weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
 
         tempLabel.font = Appearance.Font.HeroFont
+        dayOverviewLabel.font = Appearance.Font.TitleFont
         
         view.setNeedsUpdateConstraints()
         refreshInterface()
@@ -59,7 +60,7 @@ class CurrentForecastViewController: UIViewController {
             weatherConditionImageView.autoSetDimensions(to: CGSize(width: 100, height: 100))
             
             tempLabel.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
-            tempLabel.autoConstrainAttribute(ALAttribute.bottom, to: ALAttribute.horizontal, of: self.view, withOffset: -15)
+            tempLabel.autoConstrainAttribute(ALAttribute.horizontal, to: ALAttribute.horizontal, of: self.view, withOffset: -10)
             
             dayOverviewLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: tempLabel, withOffset: 30)
             dayOverviewLabel.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)

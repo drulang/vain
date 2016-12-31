@@ -49,11 +49,11 @@ class WeatherDashboardViewController: UIViewController {
     override func updateViewConstraints() {
         if !constraintsAdded {
             constraintsAdded = true
-            
+
             let currentForecastView = currentForecastViewController.view
             let topViewInsets = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
             currentForecastView?.autoPinEdgesToSuperviewEdges(with: topViewInsets, excludingEdge: ALEdge.bottom)
-            currentForecastView?.autoConstrainAttribute(ALAttribute.height, to: ALAttribute.height, of: self.view, withMultiplier: 0.75)
+            currentForecastView?.autoConstrainAttribute(ALAttribute.height, to: ALAttribute.height, of: self.view, withMultiplier: 0.71)
 
             if let currentForecastView = currentForecastView {
                 let weekForecastView = weekForecastViewController.view
