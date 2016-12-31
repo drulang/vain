@@ -35,7 +35,7 @@ class WeatherDashboardViewController: UIViewController {
             fetchCurrentLocation()
         } else {
             CommandCenter.shared.requestLocationUseAuthorization { (error:LocationServiceError?) in
-                if error != nil {
+                if error == nil {
                     self.fetchCurrentLocation()
                 } else {
                     log.error("Failed to request user location authorization: \(error)")
@@ -54,8 +54,7 @@ class WeatherDashboardViewController: UIViewController {
             let topViewInsets = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
             currentForecastView?.autoPinEdgesToSuperviewEdges(with: topViewInsets, excludingEdge: ALEdge.bottom)
             currentForecastView?.autoConstrainAttribute(ALAttribute.height, to: ALAttribute.height, of: self.view, withMultiplier: 0.75)
-            
-            
+
             if let currentForecastView = currentForecastView {
                 let weekForecastView = weekForecastViewController.view
                 

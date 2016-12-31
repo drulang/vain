@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 
+
 private struct LocationServiceConfig {
     static let StopManagerAfterFailedAttempts = 15
 }
@@ -23,7 +24,6 @@ class LocationService : NSObject {
     
     override init() {
         super.init()
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.delegate = self
     }
@@ -34,7 +34,7 @@ class LocationService : NSObject {
 extension LocationService: CurrentLocationDataSource {
 
     internal var userAuthorizedLocationUse: Bool {
-        return CLLocationManager.locationServicesEnabled()
+        return CLLocationManager.authorizationStatus() == .authorizedWhenInUse
     }
 
     internal func requestLocationUseAuthorization(completion: @escaping (LocationServiceError?) -> Void) {
@@ -102,6 +102,11 @@ extension LocationService {
 //MARK: LocationManager
 extension LocationService: CLLocationManagerDelegate {
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        log.error("Core Location Error: \(error)")
+    }
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         log.debug("Received Core Location Manager location update")
 
@@ -135,6 +140,13 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        log.debug("Core Location Auth Status changed: \(status)")
+
+        guard status != .notDetermined else {
+            log.debug("Core Location Auth Status changed, but has not been determined yet. Will not execute the requestAuthorizationCompletionBlock")
+            return
+        }
+
         if let completion = requestAuthorizationCompletionBlock {
             let error = status == CLAuthorizationStatus.authorizedWhenInUse ? nil : LocationServiceError.AuthorizationError
             completion(error)

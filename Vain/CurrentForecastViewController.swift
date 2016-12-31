@@ -12,8 +12,9 @@ import PureLayout
 class CurrentForecastViewController: UIViewController {
     fileprivate let tempLabel = UILabel(forAutoLayout: ())
     fileprivate let locationLabel = UILabel(forAutoLayout: ())
-    fileprivate let dayOverviewLabel = UILabel(forAutoLayout: ())
     fileprivate let weatherConditionImageView = UIImageView(forAutoLayout: ())
+    
+    fileprivate let dayOverviewLabel = UILabel(forAutoLayout: ())
     fileprivate var constraintsAdded = false
     fileprivate let formatter = ForecastMeasurementFormatter()
 

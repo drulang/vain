@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyBeaver
 
-let log = SwiftyBeaver.self
 
 let appDel = UIApplication.shared.delegate as! AppDelegate
 
@@ -56,12 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK: Helpers
 extension AppDelegate {
 
-    func initializeLogging() {
-        print("Initializing logging")
-        log.addDestination(ConsoleDestination())
-        log.info("Logging initialized")
-    }
-    
     func initializeWindow() {
         log.info("Initializing application window")
 
