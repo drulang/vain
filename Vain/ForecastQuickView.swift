@@ -20,11 +20,17 @@ class ForecastQuickView : UIView {
         addSubview(iconImageView)
 
         clipsToBounds = false
-
+        
         iconImageView.contentMode = UIViewContentMode.scaleAspectFill
-
+        iconImageView.tintColor = Appearance.Palette.Text.Primary
+        
+        //TODO: Move to helper
         layer.cornerRadius = 30
-        backgroundColor = UIColor.orange
+        layer.shadowRadius = CGFloat(2)
+        layer.shadowColor = Appearance.Palette.DarkGray.cgColor
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowOpacity = 1
+        backgroundColor = Appearance.Palette.Secondary
         
         setNeedsUpdateConstraints()
     }

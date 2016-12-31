@@ -29,6 +29,6 @@ class ForecastMeasurementFormatter : MeasurementFormatter {
 extension ForecastMeasurementFormatter {
     
     func hiAndLo(forecast:Forecast) -> String {
-        return "\(string(from: forecast.lo)) / \(string(from: forecast.hi))"
+        return "\(string(from: forecast.lo)) \(string(from: forecast.hi))"
     }
 }

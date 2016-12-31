@@ -77,6 +77,8 @@ extension WeatherDashboardViewController {
 
     fileprivate func setupSubControllers() {
         setupChildController(controller: currentForecastViewController)
+        currentForecastViewController.delegate = self
+
         setupChildController(controller: weekForecastViewController)
     }
     
@@ -95,6 +97,16 @@ extension WeatherDashboardViewController {
                 log.error("There was an error retreiving user's location: \(error)")
             }
             self.location = location
+        }
+    }
+}
+
+
+//MARK: CurrentForecastViewDelegate
+extension WeatherDashboardViewController : CurrentForecastViewDelegate {
+    func currentForecastChanged(forecast: Forecast?) {
+        UIView.animate(withDuration: 0.3) { 
+            self.view.backgroundColor = forecast?.condition.color()
         }
     }
 }

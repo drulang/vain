@@ -123,12 +123,12 @@ extension DailyForecastViewController: UICollectionViewDataSource {
                 return cell;
         }
         
-        //TODO: Rewire
-        //forecastCell.forecastView.forecastQuickView.textLabel.text = formatter.hiAndLo(forecast: forecast)
-        forecastCell.forecastView.forecastQuickView.iconImageView.image = UIImage(named: forecast.condition.imageName())
+        forecastCell.forecastView.subtitleLabel.text = formatter.hiAndLo(forecast: forecast)
+        forecastCell.forecastView.forecastQuickView.iconImageView.image = UIImage.imageTemplate(named: forecast.condition.imageName())
+        forecastCell.forecastView.forecastQuickView.iconImageView.tintColor = forecast.condition.color()
         
         let dateText = dateFormatter.string(from: forecast.date)
-        forecastCell.forecastView.textLabel.text = dateText//[dateText.startIndex...dateText.index(dateText.startIndex, offsetBy: 0)]
+        forecastCell.forecastView.textLabel.text = dateText
 
         return cell
     }

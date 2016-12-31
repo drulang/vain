@@ -32,10 +32,12 @@ class ForecastDayQuickView : UIView {
         textLabel.text = "M"
         textLabel.textAlignment = NSTextAlignment.center
         textLabel.font = Appearance.Font.IconSubtitleFont
+        textLabel.textColor = Appearance.Palette.Text.Primary
         
         subtitleLabel.text = "45  23"
         subtitleLabel.textAlignment = NSTextAlignment.center
         subtitleLabel.font = Appearance.Font.SubtitleFont
+        subtitleLabel.textColor = Appearance.Palette.Text.Primary
         
         setNeedsUpdateConstraints()
     }

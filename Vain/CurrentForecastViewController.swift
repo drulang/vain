@@ -9,6 +9,10 @@
 import UIKit
 import PureLayout
 
+protocol CurrentForecastViewDelegate {
+    func currentForecastChanged(forecast:Forecast?)
+}
+
 class CurrentForecastViewController: UIViewController {
     fileprivate let tempLabel = UILabel(forAutoLayout: ())
     fileprivate let locationLabel = UILabel(forAutoLayout: ())
@@ -21,6 +25,7 @@ class CurrentForecastViewController: UIViewController {
     fileprivate var forecast:Forecast? {
         didSet {
             refreshInterface()
+            delegate?.currentForecastChanged(forecast: forecast)
         }
     }
 
@@ -29,6 +34,7 @@ class CurrentForecastViewController: UIViewController {
             refreshData()
         }
     }
+    internal var delegate:CurrentForecastViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +45,16 @@ class CurrentForecastViewController: UIViewController {
         view.addSubview(weatherConditionImageView)
         
         weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
+        weatherConditionImageView.tintColor = Appearance.Palette.Text.Primary
 
         tempLabel.font = Appearance.Font.HeroFont
-        dayOverviewLabel.font = Appearance.Font.TitleFont
+        tempLabel.textColor = Appearance.Palette.Text.Primary
+
+        locationLabel.textColor = Appearance.Palette.Text.Primary
+        locationLabel.font = Appearance.Font.SubtitleFontMedium
+        
+        dayOverviewLabel.textColor = Appearance.Palette.Text.Primary
+        dayOverviewLabel.font = Appearance.Font.TitleFontMedium
         
         view.setNeedsUpdateConstraints()
         refreshInterface()
@@ -59,7 +72,7 @@ class CurrentForecastViewController: UIViewController {
             weatherConditionImageView.autoPinEdge(toSuperviewMargin: ALEdge.right)
             weatherConditionImageView.autoSetDimensions(to: CGSize(width: 100, height: 100))
             
-            tempLabel.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
+            tempLabel.autoAlignAxis(ALAxis.vertical, toSameAxisOf: view, withOffset: 20)
             tempLabel.autoConstrainAttribute(ALAttribute.horizontal, to: ALAttribute.horizontal, of: self.view, withOffset: -10)
             
             dayOverviewLabel.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: tempLabel, withOffset: 30)
@@ -83,8 +96,7 @@ extension CurrentForecastViewController : Refresh {
         }
 
         dayOverviewLabel.text = formatter.hiAndLo(forecast: forecast)
-
-        weatherConditionImageView.image = UIImage(named:forecast.condition.imageName())
+        weatherConditionImageView.image = UIImage.imageTemplate(named: forecast.condition.imageName())
 
         if let currentTemp = forecast.current {
             self.tempLabel.text = "\(formatter.string(from: currentTemp))"

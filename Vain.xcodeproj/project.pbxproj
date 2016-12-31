@@ -79,6 +79,9 @@
 		71E8B9421E15B6F600385A0B /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9411E15B6F600385A0B /* Log.swift */; };
 		71E8B9431E15B6F600385A0B /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9411E15B6F600385A0B /* Log.swift */; };
 		71E8B9441E15B6F600385A0B /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9411E15B6F600385A0B /* Log.swift */; };
+		71E8B9461E16D8AB00385A0B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9451E16D8AB00385A0B /* UIImage.swift */; };
+		71E8B9471E16D8AB00385A0B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9451E16D8AB00385A0B /* UIImage.swift */; };
+		71E8B9481E16D8AB00385A0B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B9451E16D8AB00385A0B /* UIImage.swift */; };
 		DDE049F041B2E0AC78AC08E9 /* Pods_VainWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FDAA4AAF0D834AE08A1189 /* Pods_VainWidget.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +145,7 @@
 		71E8B9211E15A47500385A0B /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		71E8B9261E15A47500385A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71E8B9411E15B6F600385A0B /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		71E8B9451E16D8AB00385A0B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		72FDAA4AAF0D834AE08A1189 /* Pods_VainWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VainWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8013F465A06DE8F865801796 /* Pods_Vain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCAE291C27C959613DD299B /* Pods-Vain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vain/Pods-Vain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 			children = (
 				719A7FEB1DFF71C000CE7F34 /* UIColor.swift */,
 				719A7FED1DFF735000CE7F34 /* UIView.swift */,
+				71E8B9451E16D8AB00385A0B /* UIImage.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				71E8B9141E146C5D00385A0B /* MeasurementFormatter.swift in Sources */,
 				717C58FF1DFF0903003F2835 /* Forecast.swift in Sources */,
 				719A7FEC1DFF71C000CE7F34 /* UIColor.swift in Sources */,
+				71E8B9461E16D8AB00385A0B /* UIImage.swift in Sources */,
 				719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */,
 				717C59071DFF2E68003F2835 /* DailyForecastViewController.swift in Sources */,
 				717C58EE1DFEEBF0003F2835 /* CommandCenter.swift in Sources */,
@@ -600,6 +606,7 @@
 				71E8B8F61E14601100385A0B /* Refresh.swift in Sources */,
 				71E8B9151E146CAF00385A0B /* MeasurementFormatter.swift in Sources */,
 				71E8B8F71E14601100385A0B /* Forecast.swift in Sources */,
+				71E8B9471E16D8AB00385A0B /* UIImage.swift in Sources */,
 				71E8B8F81E14601100385A0B /* UIColor.swift in Sources */,
 				71E8B8F91E14601100385A0B /* ForecastDayQuickView.swift in Sources */,
 				71E8B8FA1E14601100385A0B /* DailyForecastViewController.swift in Sources */,
@@ -636,6 +643,7 @@
 				71E8B9321E15A96500385A0B /* LocalStore.swift in Sources */,
 				71E8B9331E15A96C00385A0B /* CommandCenter.swift in Sources */,
 				71E8B93D1E15A99D00385A0B /* MeasurementFormatter.swift in Sources */,
+				71E8B9481E16D8AB00385A0B /* UIImage.swift in Sources */,
 				71E8B9341E15A97700385A0B /* Model.swift in Sources */,
 				71E8B9371E15A97D00385A0B /* WeatherCondition.swift in Sources */,
 			);
