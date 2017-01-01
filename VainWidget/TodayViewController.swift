@@ -41,15 +41,15 @@ class TodayViewController: UIViewController {
         view.addSubview(tempLabel)
         view.addSubview(locationLabel)
         view.addSubview(weatherConditionImageView)
-        
+
         weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
         
-        tempLabel.font = Appearance.Font.HeroFont
-        
+        tempLabel.font = Appearance.Font.HeroFontSmall
+
         view.setNeedsUpdateConstraints()
         refreshInterface()
         
-        
+    
         CommandCenter.shared.requestLocationUseAuthorization { (error:LocationServiceError?) in
                 CommandCenter.shared.currentLocation { (location:Location?, error:LocationServiceError?) in
                     if error != nil {
@@ -65,15 +65,17 @@ class TodayViewController: UIViewController {
         if !constraintsAdded {
             constraintsAdded = true
             
-            view.addConstraint(NSLayoutConstraint(item: locationLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: locationLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
+            let heightRation = 0.7
             
-            view.addConstraint(NSLayoutConstraint(item: tempLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: tempLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: locationLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: locationLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 15))
+            view.addConstraint(NSLayoutConstraint(item: locationLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: tempLabel, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 15))
             
-            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: locationLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: CGFloat(0.8), constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: tempLabel, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: tempLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
+            
+            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: -15))
+            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: CGFloat(heightRation), constant: 0))
             view.addConstraint(NSLayoutConstraint(item: weatherConditionImageView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: weatherConditionImageView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0))
         }
         
@@ -110,7 +112,8 @@ extension TodayViewController : Refresh {
             return
         }
 
-        weatherConditionImageView.image = UIImage(named:forecast.condition.imageName())
+        weatherConditionImageView.image = UIImage.imageTemplate(named: forecast.condition.imageName())
+        weatherConditionImageView.tintColor = forecast.condition.color()
         
         if let currentTemp = forecast.current {
             self.tempLabel.text = "\(formatter.string(from: currentTemp))"

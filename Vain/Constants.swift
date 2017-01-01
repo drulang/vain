@@ -25,6 +25,7 @@ struct Appearance {
         static let SubtitleFont = UIFont(name: Font.Name, size: 17)
         static let SubtitleFontMedium = UIFont(name: Font.Name, size: 24)
         static let HeroFont = UIFont(name: Font.Name, size: 140)
+        static let HeroFontSmall = UIFont(name: Font.Name, size: 85)
         static let IconSubtitleFont = UIFont(name: Font.Name, size: 15)
     }
     
