@@ -44,7 +44,7 @@ class CurrentForecastViewController: UIViewController {
         view.addSubview(dayOverviewLabel)
         view.addSubview(weatherConditionImageView)
         
-        weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
+        weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFit
         weatherConditionImageView.tintColor = Appearance.Palette.Text.Primary
 
         tempLabel.font = Appearance.Font.HeroFont

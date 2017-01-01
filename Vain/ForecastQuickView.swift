@@ -21,7 +21,7 @@ class ForecastQuickView : UIView {
 
         clipsToBounds = false
         
-        iconImageView.contentMode = UIViewContentMode.scaleAspectFill
+        iconImageView.contentMode = UIViewContentMode.scaleAspectFit
         iconImageView.tintColor = Appearance.Palette.Text.Primary
         
         //TODO: Move to helper

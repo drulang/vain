@@ -52,32 +52,32 @@ struct Appearance {
         
         struct WeatherCondition {
             struct Thunderstorm {
-                static let Day = UIColor(hex: 0x55749F)
-                static let Night = UIColor(hex: 0x55749F)
+                static let Day = UIColor(hex: 0x484F6E)
+                static let Night = WeatherCondition.Thunderstorm.Day
             }
             struct Rain {
                 static let Day = UIColor(hex: 0x55749F)
-                static let Night = UIColor(hex: 0x55749F)
+                static let Night = Rain.Day
             }
             struct ClearSky {
                 static let Day = UIColor(hex: 0xFFCD5B)
-                static let Night = UIColor(hex: 0xFFCD5B)
+                static let Night = UIColor(hex: 0x373C54)
             }
             struct Snow {
-                static let Day = UIColor(hex: 0x65727A)
-                static let Night = UIColor(hex: 0x65727A)
+                static let Day = UIColor(hex: 0xA4B4C4)
+                static let Night = Snow.Day
             }
             struct Clouds {
                 static let Day = UIColor(hex: 0x7597C6)
-                static let Night = UIColor(hex: 0x7597C6)
+                static let Night = Clouds.Day
             }
             struct Drizzle {
-                static let Day = UIColor(hex: 0x55749F)
-                static let Night = UIColor(hex: 0x55749F)
+                static let Day = UIColor(hex: 0xC8D9C9)
+                static let Night = Drizzle.Day
             }
             struct Atmosphere {
                 static let Day = UIColor(hex: 0x9D333C)
-                static let Night = UIColor(hex: 0x9D333C)
+                static let Night = Atmosphere.Day
             }
         }
     }

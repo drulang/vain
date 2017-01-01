@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "noun_snow_426.png",
+      "filename" : "noun_136419.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "noun_136419@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "noun_136419@3x.png",
       "scale" : "3x"
     }
   ],
