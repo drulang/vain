@@ -42,7 +42,7 @@ class TodayViewController: UIViewController {
         view.addSubview(locationLabel)
         view.addSubview(weatherConditionImageView)
 
-        weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFill
+        weatherConditionImageView.contentMode = UIViewContentMode.scaleAspectFit
         
         tempLabel.font = Appearance.Font.HeroFontSmall
 
