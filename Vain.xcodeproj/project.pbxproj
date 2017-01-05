@@ -31,6 +31,9 @@
 		719A7FF01DFF73B100CE7F34 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FEF1DFF73B100CE7F34 /* Refresh.swift */; };
 		719A7FF41DFF782100CE7F34 /* ForecastQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */; };
 		719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */; };
+		719EE7611E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EE7601E1D8C1500ACA9B9 /* MockWeatherService.swift */; };
+		719EE7621E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EE7601E1D8C1500ACA9B9 /* MockWeatherService.swift */; };
+		719EE7631E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EE7601E1D8C1500ACA9B9 /* MockWeatherService.swift */; };
 		71B9492B1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */; };
 		71E8B8F21E14601100385A0B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A7FED1DFF735000CE7F34 /* UIView.swift */; };
 		71E8B8F31E14601100385A0B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717C58FC1DFF08E7003F2835 /* Model.swift */; };
@@ -136,6 +139,7 @@
 		719A7FEF1DFF73B100CE7F34 /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
 		719A7FF31DFF782100CE7F34 /* ForecastQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastQuickView.swift; sourceTree = "<group>"; };
 		719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickView.swift; sourceTree = "<group>"; };
+		719EE7601E1D8C1500ACA9B9 /* MockWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWeatherService.swift; sourceTree = "<group>"; };
 		71B9492A1E00B9C20093C437 /* ForecastDayQuickCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDayQuickCollectionViewCell.swift; sourceTree = "<group>"; };
 		71E8B9111E14601100385A0B /* Vain Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vain Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E8B9121E14601100385A0B /* Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Staging-Info.plist"; path = "/Users/dru/Documents/code/vain/Staging-Info.plist"; sourceTree = "<absolute>"; };
@@ -284,9 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				717C58F01DFEEC3D003F2835 /* ServiceProtocol.swift */,
-				717C58F41DFEF035003F2835 /* OpenWeatherMapService.swift */,
 				717C58F61DFEF35C003F2835 /* LocationService.swift */,
 				717C58F81DFEF3DD003F2835 /* LocalStore.swift */,
+				719EE7641E1D8C2D00ACA9B9 /* Weather Service */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -328,6 +332,15 @@
 				719A7FF51DFF782D00CE7F34 /* ForecastDayQuickView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		719EE7641E1D8C2D00ACA9B9 /* Weather Service */ = {
+			isa = PBXGroup;
+			children = (
+				719EE7601E1D8C1500ACA9B9 /* MockWeatherService.swift */,
+				717C58F41DFEF035003F2835 /* OpenWeatherMapService.swift */,
+			);
+			name = "Weather Service";
 			sourceTree = "<group>";
 		};
 		71B949281E00B98A0093C437 /* Cell */ = {
@@ -578,6 +591,7 @@
 				71E8B9461E16D8AB00385A0B /* UIImage.swift in Sources */,
 				719A7FF61DFF782D00CE7F34 /* ForecastDayQuickView.swift in Sources */,
 				717C59071DFF2E68003F2835 /* DailyForecastViewController.swift in Sources */,
+				719EE7611E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */,
 				717C58EE1DFEEBF0003F2835 /* CommandCenter.swift in Sources */,
 				717C58D71DFD9C8D003F2835 /* AppDelegate.swift in Sources */,
 				717C58F11DFEEC3D003F2835 /* ServiceProtocol.swift in Sources */,
@@ -609,6 +623,7 @@
 				71E8B9471E16D8AB00385A0B /* UIImage.swift in Sources */,
 				71E8B8F81E14601100385A0B /* UIColor.swift in Sources */,
 				71E8B8F91E14601100385A0B /* ForecastDayQuickView.swift in Sources */,
+				719EE7621E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */,
 				71E8B8FA1E14601100385A0B /* DailyForecastViewController.swift in Sources */,
 				71E8B8FB1E14601100385A0B /* CommandCenter.swift in Sources */,
 				71E8B8FD1E14601100385A0B /* ServiceProtocol.swift in Sources */,
@@ -642,6 +657,7 @@
 				71E8B93B1E15A99800385A0B /* UIView.swift in Sources */,
 				71E8B9321E15A96500385A0B /* LocalStore.swift in Sources */,
 				71E8B9331E15A96C00385A0B /* CommandCenter.swift in Sources */,
+				719EE7631E1D8C1500ACA9B9 /* MockWeatherService.swift in Sources */,
 				71E8B93D1E15A99D00385A0B /* MeasurementFormatter.swift in Sources */,
 				71E8B9481E16D8AB00385A0B /* UIImage.swift in Sources */,
 				71E8B9341E15A97700385A0B /* Model.swift in Sources */,
