@@ -26,8 +26,8 @@ class CommandCenter {
     
     init() {
         weatherServices = [
-            //OpenWeatherMapService(),
-            DebugWeatherService(),
+            OpenWeatherMapService(),
+            //DebugWeatherService(),
             
             // The idea is to have multiple weather data sources to pull data from.
             // This is so we can use caching, redundancey, and access to information that
