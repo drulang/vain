@@ -221,7 +221,7 @@ extension OpenWeatherMapService: WeatherServiceDataSource {
                     
                     if let convertedData = convertedData as? [String:Any] {
                         do {
-                            let forecast = try Forecast(withData: convertedData) //TODO: Wrap
+                            let forecast = try Forecast(withData: convertedData)
                             days.append(forecast)
                         } catch {
                             completion(nil, WeatherServiceError.DataSerializationError)
