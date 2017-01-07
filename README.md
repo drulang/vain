@@ -8,4 +8,4 @@ Your solution should at the very least display the min/max temperature for the n
 
 ![Main 1](/Screenshots/Main_Clear_Sky.png?raw=true "Main")
 ![Main 2](/Screenshots/Main_Snow.png?raw=true "Main 2")
-![Widget](/Screenshots/Main_Snow.png?raw=true "Widget")
+![Widget](/Screenshots/Widget.png?raw=true "Widget")
